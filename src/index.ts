@@ -1,3 +1,3 @@
-export function log(item: any): void {
-  console.log(item)
+export function returnHalf(num: number): number {
+  return num / 2
 }

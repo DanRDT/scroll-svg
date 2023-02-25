@@ -10,7 +10,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "",
+    "test": "jest --verbose",
     "lint": "tsc",
     "build": "tsc && tsup ./src/index.ts --format cjs,esm --dts"
   },
@@ -31,7 +31,11 @@
   "homepage": "https://github.com/DanRDT/scroll-svg#readme",
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
+    "@types/jest": "^29.4.0",
     "tsup": "^6.6.3",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "jest": "^29.4.3"
   }
 }
