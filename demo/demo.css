@@ -1,0 +1,98 @@
+/* Root */
+:root {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --complementary-color: #f87d37;
+  --complementary-color-darker: hwb(22 20% 15%);
+  --background-color: #181818;
+  --background-color-darker: #0e0e0e;
+  --placeholder-color: #d9d9d9;
+}
+
+/* Fonts */
+@font-face {
+  font-family: "raleway";
+  src: url("/fonts/raleway-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Page Elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  color: var(--secondary-color);
+  font-family: "raleway", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-weight: 100;
+  text-decoration: none;
+}
+
+html {
+  font-size: 16px;
+  scrollbar-color: var(--complementary-color) var(--primary-color);
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+body {
+  background-color: var(--background-color);
+  position: relative;
+  min-height: 100%;
+  overflow-x: hidden;
+  line-height: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section {
+  height: 130rem;
+  width: 100%;
+  position: relative;
+  padding: 3rem 0;
+}
+
+/* Scroll Bar */
+::-webkit-scrollbar {
+  width: 0.8rem;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: var(--primary-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--complementary-color);
+  border: 0.2rem solid var(--complementary-color);
+  border-radius: 20px;
+}
+
+section:nth-of-type(2n + 1) {
+  background-color: var(--background-color-darker);
+}
+section:nth-of-type(2n) {
+  background-color: var(--background-color);
+}
+
+/* SVGs */
+.svg-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.svg-container svg {
+  width: auto;
+  height: 100%;
+}
