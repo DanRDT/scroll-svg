@@ -10,34 +10,34 @@ export default function scrollSvg(svgPath: SVGPathElement): void {
   // svgPath.style.strokeDashoffset = svgPathLength
 
   // const scrollLinePath: SVGPathElement | null = document.querySelector("#scroll-line-2")
+
+  if (svgPath === null) {
+    console.error("svgPath not found ~ check id or class")
+    return
+  } else if (svgPath.tagName !== "path") {
+    console.error("svgPath is not a path")
+    return
+  } else if (svgPath.getTotalLength() === 0) {
+    console.error("svgPath has no length")
+  }
+
   const scrollLinePathLength = svgPath.getTotalLength() //
 
   svgPath.style.strokeDasharray = scrollLinePathLength + " " + scrollLinePathLength
   svgPath.style.strokeDashoffset = scrollLinePathLength + ""
 
   const calcScrollLine = () => {
-    // if (sectionOne === null || sectionTwo === null || sectionThree === null || sectionFour === null) {
-    //   console.error("section not found")
-    //   return
-    // }
-
-    let currentScrollPosition = document.documentElement.scrollTop + document.body.scrollTop
+    let currentScrollPosition = document.documentElement.scrollTop
     let totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
 
-    // let sectionOneHeight = sectionOne.clientHeight
-    // let sectionThreeHeight = sectionThree.clientHeight
-    // let sectionFourHeight = sectionFour.clientHeight
-
-    // const aboveHeight = sectionOneHeight
     const aboveHeight = calcHeightAbove(svgPath)
-    // const belowHeight = sectionThreeHeight + sectionFourHeight
     const belowHeight = calcHeightBelow(svgPath)
 
     let adjustedTotalHeight = totalHeight - belowHeight
     let scrollPercentage = currentScrollPosition / adjustedTotalHeight
 
     // wait for section2 to appear
-    let scrollPercentOffset = aboveHeight / 2.3 / adjustedTotalHeight
+    let scrollPercentOffset = aboveHeight / 2 / adjustedTotalHeight
 
     //calculate amount to draw
     let offsetPercentage = scrollPercentage - scrollPercentOffset
@@ -55,12 +55,21 @@ export default function scrollSvg(svgPath: SVGPathElement): void {
   window.addEventListener("scroll", calcScrollLine)
 }
 
+// height = element height
+// width = element width
+// left and right are distance from left and right of viewport
+// x = left
+// y = top
+
 function calcHeightAbove(SVGPathElement: SVGPathElement): number {
-  // TODO: calculate height above
-  return 0
+  return Math.round(SVGPathElement.getBoundingClientRect().top + document.documentElement.scrollTop)
 }
 
 function calcHeightBelow(SVGPathElement: SVGPathElement): number {
-  // TODO: calculate height below
-  return 0
+  const totalHeight = document.documentElement.scrollHeight
+  const heightToBottomOfElement =
+    SVGPathElement.getBoundingClientRect().bottom + document.documentElement.scrollTop
+  const heightBelow = totalHeight - heightToBottomOfElement
+
+  return Math.round(heightBelow)
 }
