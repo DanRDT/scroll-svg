@@ -1,4 +1,12 @@
-export default function scrollSvg(svgPath: SVGPathElement): void {
+type Options = {
+  invert: boolean
+}
+
+const defaultOptions = {
+  invert: false,
+}
+
+export default function scrollSvg(svgPath: SVGPathElement, options: Options = defaultOptions): void {
   // check if svgPath is a path
   if (svgPath === null) {
     return console.error("svgPath not found ~ check id or class")
@@ -12,36 +20,17 @@ export default function scrollSvg(svgPath: SVGPathElement): void {
   svgPath.style.strokeDasharray = svgPathLength + " " + svgPathLength
   const dashOffset = svgPath.style
 
-  // svgPath.style.strokeDashoffset = svgPathLength + 1 + ""
   dashOffset.strokeDashoffset = 0 + ""
 
   const calcScrollLine = () => {
     const percentToDraw = calcPercentToDraw(svgPath)
-    const pixelOffset = percentToPixelOffset(percentToDraw, svgPath)
-    dashOffset.strokeDashoffset = pixelOffset + ""
+    let pixelOffset = percentToPixelOffset(percentToDraw, svgPath)
 
-    // let currentScrollPosition = document.documentElement.scrollTop
-    // let totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-    // const aboveHeight = calcHeightAbove(svgPath)
-    // const belowHeight = calcHeightBelow(svgPath)
-    // console.log(
-    //   `Top: ${Math.round(svgPath.getBoundingClientRect().top)} Bottom: ${Math.round(
-    //     svgPath.getBoundingClientRect().bottom
-    //   )}`
-    // )
-    // find how far down the path you are using
-    // let adjustedTotalHeight = totalHeight - belowHeight
-    // let scrollPercentage = currentScrollPosition / adjustedTotalHeight
-    // // wait for section2 to appear
-    // let scrollPercentOffset = aboveHeight / 2 / adjustedTotalHeight
-    // //calculate amount to draw
-    // let offsetPercentage = scrollPercentage - scrollPercentOffset
-    // if (offsetPercentage > 1) {
-    //   offsetPercentage = 1 // Max out SVG
-    // }
-    // let drawLength = svgPathLength * offsetPercentage
-    // // draw in reverse
-    // svgPath.style.strokeDashoffset = svgPathLength - drawLength + ""
+    if (options.invert) {
+      pixelOffset = -pixelOffset
+    }
+
+    dashOffset.strokeDashoffset = pixelOffset + ""
   }
 
   window.addEventListener("scroll", calcScrollLine)
@@ -63,14 +52,21 @@ export default function scrollSvg(svgPath: SVGPathElement): void {
 
 // gets the percent as a decimal that the svg should be drawn and converts it to a pixel offset
 function percentToPixelOffset(percent: number, svgPath: SVGPathElement): number {
+  // flips the percent from something like 0.3 to 0.7 and vise versa
+  const adjustedPercent = 1 - percent
   const svgPathLength = svgPath.getTotalLength()
-  return percent * svgPathLength
+  return adjustedPercent * svgPathLength
 }
 
 function calcPercentToDraw(svgPath: SVGPathElement): number {
-  //TODO calculate the percentage of the svg to draw
+  //TODO offset by client height
 
-  let offsetPercentage = 0.9
+  const height = window.innerHeight
+
+  const svgTop = svgPath.getBoundingClientRect().top
+  const svgHeight = svgPath.getBoundingClientRect().height
+
+  let offsetPercentage = (-svgTop + height / 2) / svgHeight
 
   // Max out SVG
   if (offsetPercentage > 1) {
@@ -79,7 +75,7 @@ function calcPercentToDraw(svgPath: SVGPathElement): number {
     offsetPercentage = 0
   }
 
-  // flip the percentage
-  offsetPercentage = 1 - offsetPercentage
+  console.log(offsetPercentage)
+
   return offsetPercentage
 }
