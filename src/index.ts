@@ -36,20 +36,6 @@ export default function scrollSvg(svgPath: SVGPathElement, options: Options = de
   window.addEventListener("scroll", calcScrollLine)
 }
 
-// function calcHeightAbove(SVGPathElement: SVGPathElement): number {
-//   const heightAbove = SVGPathElement.getBoundingClientRect().top + document.documentElement.scrollTop
-//   return Math.round(heightAbove)
-// }
-
-// function calcHeightBelow(SVGPathElement: SVGPathElement): number {
-//   const totalHeight = document.documentElement.scrollHeight
-//   const heightToBottomOfElement =
-//     SVGPathElement.getBoundingClientRect().bottom + document.documentElement.scrollTop
-//   const heightBelow = totalHeight - heightToBottomOfElement
-
-//   return Math.round(heightBelow)
-// }
-
 // gets the percent as a decimal that the svg should be drawn and converts it to a pixel offset
 function percentToPixelOffset(percent: number, svgPath: SVGPathElement): number {
   // flips the percent from something like 0.3 to 0.7 and vise versa
@@ -59,8 +45,6 @@ function percentToPixelOffset(percent: number, svgPath: SVGPathElement): number 
 }
 
 function calcPercentToDraw(svgPath: SVGPathElement): number {
-  //TODO offset by client height
-
   const height = window.innerHeight
 
   const svgTop = svgPath.getBoundingClientRect().top
