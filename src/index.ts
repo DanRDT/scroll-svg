@@ -12,7 +12,7 @@ const defaultOptions: Options = {
   scroll_origin: "center",
 }
 
-export default function scrollSvg(svgPath: SVGPathElement, options: Options = defaultOptions): void {
+export default function scrollSvg(svgPath: SVGPathElement, userOptions: Options = defaultOptions): void {
   // check if svgPath is a path
   if (svgPath === null) {
     return console.error("svgPath not found ~ check id or class")
@@ -22,7 +22,12 @@ export default function scrollSvg(svgPath: SVGPathElement, options: Options = de
     return console.error("svgPath has no length")
   }
 
-  options = { ...defaultOptions, ...options }
+  // setup options
+  const options = { ...defaultOptions, ...userOptions }
+  Object.freeze(options)
+  const optionsErrors = validateOptions(options)
+  if (optionsErrors > 0)
+    return console.error(`Found ${optionsErrors} errors in animation options for ${svgPath.outerHTML}`)
 
   // setup svgPath
   const svgPathLength = svgPath.getTotalLength()
@@ -41,7 +46,6 @@ export default function scrollSvg(svgPath: SVGPathElement, options: Options = de
     if (options.invert) {
       pixelOffset = -pixelOffset
     }
-    console.log(pixelOffset)
 
     svgStyle.strokeDashoffset = pixelOffset + ""
   }
@@ -71,4 +75,32 @@ function calcPercentToDraw(svgPath: SVGPathElement): number {
   }
 
   return offsetPercentage
+}
+
+function validateOptions(opt: Options): number {
+  let errors = 0
+  if (typeof opt.speed !== "number" || opt.speed <= 0) {
+    console.error(`Invalid speed option. Must be a number greater than 0. Is currently - ${opt.speed}`)
+    errors++
+  }
+  if (typeof opt.offset !== "number") {
+    console.error(`Invalid offset option. Must be a number. Is currently - ${opt.offset}`)
+    errors++
+  }
+  if (typeof opt.invert !== "boolean") {
+    console.error(`Invalid invert option. Must be a boolean. Is currently - ${opt.invert}`)
+    errors++
+  }
+  if (typeof opt.scroll_origin !== "string") {
+    console.error(`Invalid scroll_origin option. Must be a string. Is currently - ${opt.scroll_origin}`)
+    errors++
+  }
+  if (opt.scroll_origin !== "top" && opt.scroll_origin !== "center" && opt.scroll_origin !== "bottom") {
+    console.error(
+      `Invalid scroll_origin option. Must be 'center', 'top', or 'bottom. Is currently - ${opt.scroll_origin}`
+    )
+    errors++
+  }
+
+  return errors
 }
