@@ -1,9 +1,15 @@
 type Options = {
   invert: boolean
+  offset: number
+  speed: number
+  scroll_origin: "top" | "center" | "bottom"
 }
 
-const defaultOptions = {
+const defaultOptions: Options = {
   invert: false,
+  offset: 0,
+  speed: 1,
+  scroll_origin: "center",
 }
 
 export default function scrollSvg(svgPath: SVGPathElement, options: Options = defaultOptions): void {
@@ -16,24 +22,29 @@ export default function scrollSvg(svgPath: SVGPathElement, options: Options = de
     return console.error("svgPath has no length")
   }
 
+  options = { ...defaultOptions, ...options }
+
+  // setup svgPath
   const svgPathLength = svgPath.getTotalLength()
-  svgPath.style.strokeDasharray = svgPathLength + " " + svgPathLength
-  const dashOffset = svgPath.style
+  const svgStyle = svgPath.style
+  svgStyle.strokeDasharray = svgPathLength + " " + svgPathLength
+  svgStyle.strokeDashoffset = 0 + ""
+  calcScrollLine()
 
-  dashOffset.strokeDashoffset = 0 + ""
+  // setup scroll listener
+  window.addEventListener("scroll", calcScrollLine)
 
-  const calcScrollLine = () => {
+  function calcScrollLine() {
     const percentToDraw = calcPercentToDraw(svgPath)
     let pixelOffset = percentToPixelOffset(percentToDraw, svgPath)
 
     if (options.invert) {
       pixelOffset = -pixelOffset
     }
+    console.log(pixelOffset)
 
-    dashOffset.strokeDashoffset = pixelOffset + ""
+    svgStyle.strokeDashoffset = pixelOffset + ""
   }
-
-  window.addEventListener("scroll", calcScrollLine)
 }
 
 // gets the percent as a decimal that the svg should be drawn and converts it to a pixel offset
@@ -58,8 +69,6 @@ function calcPercentToDraw(svgPath: SVGPathElement): number {
   } else if (offsetPercentage < 0) {
     offsetPercentage = 0
   }
-
-  console.log(offsetPercentage)
 
   return offsetPercentage
 }
