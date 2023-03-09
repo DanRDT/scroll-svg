@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 0.3.0
+
+### Minor Changes
+
+- f8e5078: draw_origin property now avaliable
+
 ## 0.2.0
 
 ### Minor Changes
