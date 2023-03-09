@@ -1,31 +1,30 @@
-import { Options, DefaultOptions } from "./types"
+import { Options, OptionalOptions } from "./types"
 import calcPercentToDraw from "./utils/calcPercentToDraw"
-import { validateOptions, checkSvgPath } from "./utils/errorCheck"
-import percentToPixelOffset from "./utils/percentToPixelOffset"
+import { validateOptions, checkSvgPath } from "./utils/errorChecking"
+import percentToPixelOffset from "./utils/minor/percentToPixelOffset"
+import setupSvgPath from "./utils/minor/setupSvgPath"
 
-const defaultOptions: DefaultOptions = {
+const defaultOptions: Options = {
   invert: false,
-  offset: 0,
+  draw_origin: "center",
+  offset_type: "none",
+  offset_value: 0,
   speed: 1,
-  scroll_origin: "center",
 }
 
-export default function scrollSvg(svgPath: SVGPathElement, userOptions: Options = defaultOptions): void {
+export default function scrollSvg(svgPath: SVGPathElement, userOptions: OptionalOptions = defaultOptions): void {
   // validate svgPath
-  if (checkSvgPath(svgPath)) return console.error(`Invalid svgPath for ${svgPath.outerHTML}`)
+  if (checkSvgPath(svgPath)) return
 
   // setup options
-  const options = { ...defaultOptions, ...userOptions }
+  const options: Options = { ...defaultOptions, ...userOptions }
   Object.freeze(options)
   const optionsErrors = validateOptions(options)
   if (optionsErrors > 0)
     return console.error(`Found ${optionsErrors} errors in animation options for ${svgPath.outerHTML}`)
 
-  // setup svgPath
-  const svgPathLength = svgPath.getTotalLength()
-  const svgStyle = svgPath.style
-  svgStyle.strokeDasharray = svgPathLength + " " + svgPathLength
-  svgStyle.strokeDashoffset = 0 + ""
+  // initialize svgPath
+  setupSvgPath(svgPath)
   calcScrollLine()
 
   // setup scroll listener
@@ -39,6 +38,6 @@ export default function scrollSvg(svgPath: SVGPathElement, userOptions: Options 
       pixelOffset = -pixelOffset
     }
 
-    svgStyle.strokeDashoffset = pixelOffset + ""
+    svgPath.style.strokeDashoffset = pixelOffset + ""
   }
 }

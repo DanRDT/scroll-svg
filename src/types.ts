@@ -1,8 +1,9 @@
-export type Options = {
+export type OptionalOptions = {
   invert?: boolean
-  offset?: number
+  draw_origin?: "top" | "center" | "bottom" | number
+  offset_type?: "none" | "percent" | "pixel"
+  offset_value?: number
   speed?: number
-  scroll_origin?: "top" | "center" | "bottom"
 }
 
-export type DefaultOptions = Required<Options>
+export type Options = Required<OptionalOptions>
