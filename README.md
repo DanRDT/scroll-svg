@@ -92,7 +92,7 @@ Default Value: `false`
 
 ### Draw Origin Option
 
-The `draw_origin` option inverts which direction the svg draws from. Sometimes an svg draws backwards by default and the `draw_origin` option is required to correct it.
+The `draw_origin` option controls at which point on the screen the svg gets drawn, with `0` being the **top** of the screen and `1` being the **bottom**. By default it draws from the `center` of the screen or at `0.5`. The option takes the values `top` which is `0.25`, `center` which is `0.5`, `bottom` which is `0.75`, or any decimal between `0` and `1`.
 <br/>
 <br/>
 Valid Values: `top`, `center`, `bottom`, or any decimal from `0` to `1`
