@@ -5,7 +5,7 @@ import getDrawOrigin from "./minor/getDrawOrigin"
 export default function calcPercentToDraw(svgPath: SVGPathElement, options: Options): number {
   const height = window.innerHeight
 
-  const svgTop = svgPath.getBoundingClientRect().top
+  const svgTop = svgPath.getBoundingClientRect().top - options.offset
   const svgHeight = svgPath.getBoundingClientRect().height
 
   // screenOffset is the distance from the top of the screen to where the svg should be drawn

@@ -1,14 +1,13 @@
 import { Options, OptionalOptions } from "./types"
 import calcPercentToDraw from "./utils/calcPercentToDraw"
-import { validateOptions, checkSvgPath } from "./utils/errorChecking"
+import { validateOptions, checkSvgPath } from "./utils/inputValidation"
 import percentToPixelOffset from "./utils/minor/percentToPixelOffset"
 import setupSvgPath from "./utils/minor/setupSvgPath"
 
 const defaultOptions: Options = {
   invert: false,
   draw_origin: "center",
-  offset_type: "none",
-  offset_value: 0,
+  offset: 0,
   speed: 1,
 }
 

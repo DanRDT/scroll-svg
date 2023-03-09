@@ -50,18 +50,8 @@ export function validateOptions(options: Options): number {
   }
 
   // Check offset
-  if (typeof options.offset_value !== "number") {
-    console.error(`Invalid offset option. Must be a number. Is currently ~ ${options.offset_value}`)
-    errors++
-  }
-  if (typeof options.offset_type !== "string") {
-    console.error(`Invalid offset_type option. Must be a string. Is currently ~ ${options.offset_type}`)
-    errors++
-  }
-  if (options.offset_type !== "none" && options.offset_type !== "percent" && options.offset_type !== "pixel") {
-    console.error(
-      `Invalid offset_type option. Must be 'none', 'percent', or 'pixels'. Is currently ~ ${options.offset_type}`
-    )
+  if (typeof options.offset !== "number") {
+    console.error(`Invalid offset option. Must be a number. Is currently ~ ${options.offset}`)
     errors++
   }
 

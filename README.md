@@ -6,6 +6,8 @@ This library is in the alpha stage of development.
 
 ---
 
+---
+
 ## Setup
 
 First add an id to the path of the svg you wish to draw on scroll
@@ -51,6 +53,8 @@ const svg = document.querySelector("#scroll-line") as SVGPathElement
 
 ---
 
+---
+
 ## Options
 
 These are the default options. Currently only `invert` and `draw_origin` are supported.
@@ -79,7 +83,7 @@ scrollSVG(svg, { invert: true, draw_origin: "center" })
 
 ---
 
-### Invert Option
+### Invert
 
 The `invert` option inverts which direction the svg draws from. Sometimes an svg draws backwards by default and the `invert` option is required to correct it.
 <br/>
@@ -90,7 +94,7 @@ Default Value: `false`
 
 ---
 
-### Draw Origin Option
+### Draw Origin
 
 The `draw_origin` option controls at which point on the screen the svg gets drawn, with `0` being the **top** of the screen and `1` being the **bottom**. By default it draws from the `center` of the screen or at `0.5`. The option takes the values `top` which is `0.25`, `center` which is `0.5`, `bottom` which is `0.75`, or any decimal between `0` and `1`.
 <br/>
@@ -98,3 +102,14 @@ The `draw_origin` option controls at which point on the screen the svg gets draw
 Valid Values: `top`, `center`, `bottom`, or any decimal from `0` to `1`
 <br/>
 Default Value: `center`
+
+---
+
+### Offset
+
+The `offset` option allow you to offset the svg drawing from the `draw_origin` by a set amount of **pixels**. This is useful if you want to draw the svg before it reaches the `draw_origin` or after it passes it. It takes any number as a value. If the value is negative, the svg will be drawn the `offset` amount of pixels behind the `draw_origin` and if the value is positive, the svg will be ahead the `draw_origin` by the `offset` amount. So if you want to draw the svg 100 pixels before the `draw_origin`, you would use `-100` as the value.
+<br/>
+<br/>
+Valid Values: any `number`, positive or negative
+<br/>
+Default Value: `0`
