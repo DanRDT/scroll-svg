@@ -12,7 +12,7 @@ export default function calcPercentToDraw(svgPath: SVGPathElement, options: Opti
   let screenOffset = height * getDrawOrigin(options)
 
   // percent is represented as a decimal
-  let percentToDraw = (-svgTop + screenOffset) / svgHeight
+  let percentToDraw = ((-svgTop + screenOffset) / svgHeight) * options.speed
 
   // Max out SVG
   if (percentToDraw > 1) {

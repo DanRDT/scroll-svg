@@ -57,15 +57,14 @@ const svg = document.querySelector("#scroll-line") as SVGPathElement
 
 ## Options
 
-These are the default options. Currently only `invert` and `draw_origin` are supported.
+These are the default options.
 
 ```javascript
 const options = {
   invert: false,
   draw_origin: "center",
-  offset_type: "none", //planned
-  offset_value: 0, //planned
-  speed: 1, //planned
+  offset: 0,
+  speed: 1,
 }
 ```
 
@@ -113,3 +112,14 @@ The `offset` option allow you to offset the svg drawing from the `draw_origin` b
 Valid Values: any `number`, positive or negative
 <br/>
 Default Value: `0`
+
+---
+
+### Speed
+
+The `speed` option allows you to control the speed at which the svg is drawn. It takes any number above **zero** as a value. The higher the number, the faster the svg will be drawn. The default value is `1` which is the normal speed. If you want to draw the svg half as fast, you would use `0.5` as the value. It is useful if you want to draw multiple svgs at different speeds or if you want to draw the svg slower or faster than normal.
+<br/>
+<br/>
+Valid Values: any `number` above 0
+<br/>
+Default Value: `1`

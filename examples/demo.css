@@ -60,6 +60,7 @@ section {
   padding: 3rem 0;
 }
 
+header,
 footer {
   min-height: 100vh;
   width: 100%;
