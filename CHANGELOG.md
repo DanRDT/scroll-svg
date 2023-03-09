@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 0.4.0
+
+### Minor Changes
+
+- a2dc4d5: Offest option and Speed option now functional
+
 ## 0.3.0
 
 ### Minor Changes
