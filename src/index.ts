@@ -1,8 +1,6 @@
+import { scrollSvgClass, scrollSvgClassEmpty } from "./scrollSvgClass"
 import { Options, OptionalOptions } from "./types"
-import calcPercentToDraw from "./utils/calcPercentToDraw"
 import { validateOptions, checkSvgPath } from "./utils/inputValidation"
-import percentToPixelOffset from "./utils/minor/percentToPixelOffset"
-import setupSvgPath from "./utils/minor/setupSvgPath"
 
 const defaultOptions: Options = {
   invert: false,
@@ -12,54 +10,21 @@ const defaultOptions: Options = {
   reverse: false,
 }
 
-export class scrollSvgClass {
-  private svgPath: SVGPathElement
-  private options: Options
-  private listener: (event: Event) => void
+export default function scrollSvg(svgPath: SVGPathElement, userOptions: OptionalOptions = defaultOptions) {
+  // validate svgPath
+  // if invalid returns true, the function returns an empty replica class of scrollSvgClass
+  if (checkSvgPath(svgPath)) return new scrollSvgClassEmpty()
 
-  constructor(svgPath: SVGPathElement, userOptions: OptionalOptions = defaultOptions) {
-    this.svgPath = svgPath
-    // validate svgPath
-    if (checkSvgPath(svgPath)) console.log("svgPath is not valid")
+  // setup options
+  const options: Options = { ...defaultOptions, ...userOptions }
+  Object.freeze(options)
 
-    // setup options
-    const options: Options = { ...defaultOptions, ...userOptions }
-    Object.freeze(options)
-    const optionsErrors = validateOptions(options)
-    if (optionsErrors > 0) {
-      this.options = defaultOptions
-      console.error(`Found ${optionsErrors} errors in animation options for ${svgPath.outerHTML}`)
-    } else this.options = options
-
-    // initialize svgPath
-    setupSvgPath(svgPath)
-    calcScrollLine(svgPath, options)
-
-    this.listener = functionWrapper(this.svgPath, this.options)
-
-    window.addEventListener("scroll", this.listener)
+  // validate options
+  const optionsErrors = validateOptions(options)
+  if (optionsErrors > 0) {
+    console.error(`Found ${optionsErrors} errors in animation options for ${svgPath.outerHTML}`)
+    return new scrollSvgClassEmpty()
   }
 
-  addListener() {
-    window.addEventListener("scroll", this.listener)
-  }
-  removeListener() {
-    window.removeEventListener("scroll", this.listener)
-  }
-}
-
-function functionWrapper(svgPath: SVGPathElement, options: Options) {
-  return function inner(event: Event) {
-    calcScrollLine(svgPath, options)
-  }
-}
-
-function calcScrollLine(svgPath: SVGPathElement, options: Options) {
-  const percentToDraw = calcPercentToDraw(svgPath, options)
-  let pixelOffset = percentToPixelOffset(percentToDraw, svgPath)
-
-  if (options.invert) {
-    pixelOffset = -pixelOffset
-  }
-  svgPath.style.strokeDashoffset = pixelOffset + ""
+  return new scrollSvgClass(svgPath, options)
 }

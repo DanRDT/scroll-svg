@@ -1,9 +1,9 @@
-import scrollSvg from "../dist/index.mjs"
+import scrollSvg from "../src/index"
 
-const svg1 = document.querySelector("#scroll-line-1")
-const svg2 = document.querySelector("#scroll-line-2")
-const svg3 = document.querySelector("#scroll-line-3")
-const svg4 = document.querySelector("#scroll-line-4")
+const svg1 = document.querySelector("#scroll-line-1") as SVGPathElement
+const svg2 = document.querySelector("#scroll-line-2") as SVGPathElement
+const svg3 = document.querySelector("#scroll-line-3") as SVGPathElement
+const svg4 = document.querySelector("#scroll-line-4") as SVGPathElement
 
 // scrollSVG(svg1, { invert: true, draw_origin: 0.5, speed: 1.05, reverse: true })
 // scrollSVG(svg2, { draw_origin: 0.5 })
