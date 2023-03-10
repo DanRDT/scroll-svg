@@ -1,23 +1,38 @@
-import { Options } from "../types"
+import { OptionalOptions, Options } from "../types"
 
-// returns true if invalid SVGPathElement
-export function checkSvgPath(svgPath: SVGPathElement): Boolean {
+// returns true if valid SVGPathElement
+export function validSvgPath(svgPath: SVGPathElement): Boolean {
   // check if svgPath is a path
   if (svgPath === null) {
     console.error(`SVG Path not found ~ Check id or class name`)
-    return true
+    return false
   } else if (svgPath.tagName !== "path") {
     console.error(`${svgPath.outerHTML} is not a path`)
-    return true
+    return false
   } else if (svgPath.getTotalLength() === 0) {
     console.error(`${svgPath.outerHTML} has no length`)
-    return true
+    return false
   }
-  return false
+  return true
 }
 
-export function validateOptions(options: Options): number {
+export function validateOptions(options: Options, userOptions: OptionalOptions): number {
   let errors = 0
+
+  // check keys
+  Object.keys(options).map((key) => {
+    switch (key) {
+      case "invert":
+      case "draw_origin":
+      case "offset":
+      case "speed":
+      case "reverse":
+        break
+      default:
+        console.error(`Invalid option ~ '${key}'`)
+        errors++
+    }
+  })
 
   // Check invert
   if (typeof options.invert !== "boolean") {
@@ -61,5 +76,8 @@ export function validateOptions(options: Options): number {
     errors++
   }
 
+  if (errors > 0) {
+    console.error(`Found ${errors} errors in animation options ~ ${JSON.stringify(userOptions)}`)
+  }
   return errors
 }
