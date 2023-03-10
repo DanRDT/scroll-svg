@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 0.5.0
+
+### Minor Changes
+
+- 7e33cff: Ability to remove event listener - Compatible with ReactJS
+
 ## 0.4.0
 
 ### Minor Changes
