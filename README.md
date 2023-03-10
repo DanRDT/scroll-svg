@@ -38,8 +38,8 @@ To draw the svg path, import `scrollSVG` and pass the svg path element to `scrol
 ```javascript
 import scrollSVG from "scroll-svg"
 
-const svg = document.querySelector("#scroll-line")
-scrollSVG(svg)
+const svgPath = document.querySelector("#scroll-line")
+const svg = scrollSVG(svgPath)
 ```
 
 ### Typescript
@@ -47,8 +47,24 @@ scrollSVG(svg)
 To use with Typescript, change it from the implicit `Element|null` to `SVGPathElement` type before passing it to `scrollSVG`.
 
 ```typescript
-const svg = document.querySelector("#scroll-line") as SVGPathElement
-//                                                 ^^^^^^^^^^^^^^^^^
+const svgPath = document.querySelector("#scroll-line") as SVGPathElement
+//                                                     ^^^^^^^^^^^^^^^^^
+```
+
+### Stop the animation or remove the scroll event listener
+
+To stop the svg path, use the .removeListener() method on the svg object.
+
+```javascript
+svg.removeListener()
+```
+
+### Reactivate the animation
+
+To continue the svg path, use the .addListener() method on the svg object.
+
+```javascript
+svg.addListener()
 ```
 
 ---
@@ -70,14 +86,16 @@ const options = {
 
 ## Using the options
 
+Pass the options as the second argument to `scrollSVG`.
+
 ```javascript
-scrollSVG(svg, options)
+const svg = scrollSVG(svg, options)
 ```
 
-It is not required to use all of the options. You can pass just the options you need and leave the others out.
+It is not required to use all of the options. You can pass just the options you need and leave the others out like in the example below.
 
 ```javascript
-scrollSVG(svg, { invert: true, draw_origin: "center" })
+const svg = scrollSVG(svg, { invert: true, draw_origin: "center" })
 ```
 
 ---
@@ -123,3 +141,20 @@ The `speed` option allows you to control the speed at which the svg is drawn. It
 Valid Values: any `number` above 0
 <br/>
 Default Value: `1`
+
+---
+
+---
+
+## Using ScrollSvg with React
+
+To use ScrollSvg with React, you can use the `useEffect` hook to add the scroll event listener and remove it when the component unmounts. Everything else is the same as the examples above.
+
+```javascript
+const svgPath = document.querySelector("#scroll-line")
+
+useEffect(() => {
+  const svg = scrollSVG(svgPath)
+  return () => svg.removeListener()
+}, [])
+```
