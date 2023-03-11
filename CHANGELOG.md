@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.0.0
+
+### Major Changes
+
+- b1eb186: Scroll SVG is now full functional for all SVG paths.
+
 ## 0.5.0
 
 ### Minor Changes
