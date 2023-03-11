@@ -1,8 +1,16 @@
 # scroll-svg
 
-A library to make animating SVGs on scroll easier.
+[![npm version](https://badge.fury.io/js/scroll-svg.svg)](https://badge.fury.io/js/scroll-svg)
+[![npm](https://img.shields.io/npm/dt/scroll-svg)](https://www.npmjs.com/package/scroll-svg)
+![GitHub issues](https://img.shields.io/github/issues/DanRDT/scroll-svg)
+![GitHub stars](https://img.shields.io/github/stars/DanRDT/scroll-svg)
+![GitHub license](https://img.shields.io/github/license/DanRDT/scroll-svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/DanRDT/scroll-svg)
+![GitHub contributors](https://img.shields.io/github/contributors/DanRDT/scroll-svg)
 
-This library is in the alpha stage of development.
+Scroll SVG is a library that allows you to effortlessly animate/draw SVG paths on scroll. It is lightweight and easy to use. It provides a simple API that allows you to easily control the animation of the SVG path. It can be used with any number of SVG paths on a page. It is also compatible with Typescript.
+
+Setup is as simple as adding an id to the path element of the svg and passing the element to the `scrollSVG` function. The rest of the docs will show you how to use the library, including the `options` parameter.
 
 ---
 
