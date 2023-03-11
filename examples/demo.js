@@ -7,10 +7,7 @@ const svgPath4 = document.querySelector("#scroll-line-4")
 
 const svg1 = scrollSvg(svgPath1, { invert: true })
 const svg2 = scrollSvg(svgPath2, { draw_origin: "bottom" })
-const svg3 = scrollSvg(svgPath3, { offset: 100 })
+const svg3 = scrollSvg(svgPath3, { offset: 150 })
 const svg4 = scrollSvg(svgPath4, { undraw: true })
 
-svg1.removeListener()
-svg1.addListener()
-
-svg1.changeOptions({ undraw: true })
+console.log(svg4.getPercentageDrawn())

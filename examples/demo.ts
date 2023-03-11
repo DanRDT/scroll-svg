@@ -9,6 +9,3 @@ const svg1 = scrollSvg(svgPath1, { invert: true })
 const svg2 = scrollSvg(svgPath2, { draw_origin: "bottom" })
 const svg3 = scrollSvg(svgPath3, { offset: 100 })
 const svg4 = scrollSvg(svgPath4, { undraw: true })
-
-svg1.removeListener()
-svg1.addListener()

@@ -166,6 +166,50 @@ Default Value: `false`
 
 ---
 
+## Other Methods
+
+### Get the percentage of the svg path that has been drawn
+
+To get the percentage of the svg path that has been drawn, use the `.getPercentage()` method on the svg object. This returns a number between `0` and `100`. The percentage doesn't take into account the `offset` option, so if the svg is drawn 50% of the way and the `offset` is 100 pixels, the percentage will still be 50%. Also note that the if undraw is `true`, the percentage will still reflect the percentage of the svg path that has been drawn, not the percentage of the svg that has been scrolled past.
+
+```javascript
+const percentage = svg.getPercentageDrawn()
+```
+
+### Get the current options
+
+```javascript
+const currentOptions = svg.getOptions()
+```
+
+### Get the svg path
+
+This returns the svg path element that was passed to `scrollSVG`.
+
+```javascript
+const currentSvgPath = svg.getSvgPath()
+```
+
+### Clear the svg path
+
+This makes the svg path disappear. It will be draw again when the user scrolls, so use `removeListener()` if you don't want it to be drawn again.
+
+```javascript
+svg.clear()
+```
+
+### Draw the svg path completely
+
+This draws the svg path completely. It will be drawn back to the scroll position when the user scrolls, so use `removeListener()` if you don't want it to be drawn back to the scroll position.
+
+```javascript
+svg.fill()
+```
+
+---
+
+---
+
 ## Using ScrollSvg with React
 
 To use ScrollSvg with React, you can use the `useEffect` hook to add the scroll event listener and remove it when the component unmounts. Everything else is the same as the examples above.

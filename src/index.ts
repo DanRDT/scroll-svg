@@ -2,7 +2,7 @@ import { scrollSvgClass, scrollSvgClassEmpty } from "./scrollSvgClass"
 import { Options, OptionalOptions } from "./types"
 import { validateOptions, validSvgPath } from "./utils/inputValidation"
 
-const defaultOptions: Options = {
+export const defaultOptions: Options = {
   invert: false,
   draw_origin: "center",
   offset: 0,
