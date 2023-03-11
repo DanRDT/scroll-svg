@@ -99,6 +99,14 @@ It is not required to use all of the options. You can pass just the options you 
 const svg = scrollSVG(svg, { invert: true, draw_origin: "center" })
 ```
 
+## Changing options after initialization
+
+To change the options after initialization, use the `.changeOptions()` method on the svg object. This can be useful if you want to change the options after the user has scrolled to a certain point. For example, if you want to change the `undraw` option to `true` after the user has scrolled past the svg and have the svg follow the user as they scroll back up.
+
+```javascript
+svg.changeOptions({ undraw: true })
+```
+
 ---
 
 ### Invert

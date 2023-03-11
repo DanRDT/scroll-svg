@@ -1,11 +1,12 @@
-import { Options } from "./types"
+import { OptionalOptions, Options } from "./types"
 import calcScrollLine from "./utils/calcScrollLine"
+import { validateOptions } from "./utils/inputValidation"
 import setupSvgPath from "./utils/minor/setupSvgPath"
 
 export class scrollSvgClass {
   private svgPath: SVGPathElement
   private options: Options
-  listener: (event: Event) => void
+  private listener: (event: Event) => void
 
   constructor(svgPath: SVGPathElement, options: Options) {
     this.svgPath = svgPath
@@ -25,6 +26,20 @@ export class scrollSvgClass {
   }
   removeListener() {
     window.removeEventListener("scroll", this.listener)
+  }
+
+  changeOptions(userOptions: OptionalOptions) {
+    const options = { ...this.options, ...userOptions }
+
+    if (validateOptions(options, userOptions) > 0) return
+    this.options = options
+
+    // reset listener
+    this.removeListener()
+    this.listener = functionWrapper(this.svgPath, this.options)
+    this.addListener()
+
+    calcScrollLine(this.svgPath, options)
   }
 }
 

@@ -20,9 +20,7 @@ export default function scrollSvg(svgPath: SVGPathElement, userOptions: Optional
   Object.freeze(options)
 
   // validate options
-  if (validateOptions(options, userOptions) > 0) {
-    return new scrollSvgClassEmpty()
-  }
+  if (validateOptions(options, userOptions) > 0) return new scrollSvgClassEmpty()
 
   return new scrollSvgClass(svgPath, options)
 }

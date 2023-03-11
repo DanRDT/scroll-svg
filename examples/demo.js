@@ -12,3 +12,5 @@ const svg4 = scrollSvg(svgPath4, { undraw: true })
 
 svg1.removeListener()
 svg1.addListener()
+
+svg1.changeOptions({ undraw: true })
