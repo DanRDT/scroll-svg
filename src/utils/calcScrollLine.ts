@@ -4,7 +4,7 @@ import percentToPixelOffset from "./minor/percentToPixelOffset"
 
 export default function calcScrollLine(svgPath: SVGPathElement, options: Options) {
   const percentToDraw = calcPercentToDraw(svgPath, options)
-  let pixelOffset = percentToPixelOffset(percentToDraw, svgPath)
+  let pixelOffset = percentToPixelOffset(percentToDraw, svgPath, options)
 
   if (options.invert) {
     pixelOffset = -pixelOffset

@@ -3,7 +3,7 @@ export type OptionalOptions = {
   draw_origin?: "top" | "center" | "bottom" | number
   offset?: number
   speed?: number
-  reverse?: boolean
+  undraw?: boolean
 }
 
 export type Options = Required<OptionalOptions>

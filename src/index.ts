@@ -7,7 +7,7 @@ const defaultOptions: Options = {
   draw_origin: "center",
   offset: 0,
   speed: 1,
-  reverse: false, //TODO: implement reverse
+  undraw: false,
 }
 
 export default function scrollSvg(svgPath: SVGPathElement, userOptions: OptionalOptions = defaultOptions) {

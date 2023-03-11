@@ -26,7 +26,7 @@ export function validateOptions(options: Options, userOptions: OptionalOptions):
       case "draw_origin":
       case "offset":
       case "speed":
-      case "reverse":
+      case "undraw":
         break
       default:
         console.error(`Invalid option ~ '${key}'`)
@@ -73,6 +73,12 @@ export function validateOptions(options: Options, userOptions: OptionalOptions):
   // Check speed
   if (typeof options.speed !== "number" || options.speed <= 0) {
     console.error(`Invalid speed option. Must be a number greater than 0. Is currently ~ ${options.speed}`)
+    errors++
+  }
+
+  // Check undraw
+  if (typeof options.undraw !== "boolean") {
+    console.error(`Invalid undraw option. Must be a boolean. Is currently ~ ${options.undraw}`)
     errors++
   }
 

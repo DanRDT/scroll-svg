@@ -1,20 +1,14 @@
 import scrollSvg from "../dist/index.mjs"
 
-const svg1 = document.querySelector("#scroll-line-1")
-const svg2 = document.querySelector("#scroll-line-2")
-const svg3 = document.querySelector("#scroll-line-3")
-const svg4 = document.querySelector("#scroll-line-4")
+const svgPath1 = document.querySelector("#scroll-line-1")
+const svgPath2 = document.querySelector("#scroll-line-2")
+const svgPath3 = document.querySelector("#scroll-line-3")
+const svgPath4 = document.querySelector("#scroll-line-4")
 
-// scrollSVG(svg1, { invert: true, draw_origin: 0.5, speed: 1.05, reverse: true })
-// scrollSVG(svg2, { draw_origin: 0.5 })
-// scrollSVG(svg3)
+const svg1 = scrollSvg(svgPath1, { invert: true })
+const svg2 = scrollSvg(svgPath2, { draw_origin: "bottom" })
+const svg3 = scrollSvg(svgPath3, { offset: 100 })
+const svg4 = scrollSvg(svgPath4, { undraw: true })
 
-const svg10 = scrollSvg(svg1, { invert: true })
-const svg20 = scrollSvg(svg2)
-const svg30 = scrollSvg(svg3)
-const svg40 = scrollSvg(svg4)
-
-svg10.removeListener()
-svg10.addListener()
-
-// svg40.removeListener()
+svg1.removeListener()
+svg1.addListener()

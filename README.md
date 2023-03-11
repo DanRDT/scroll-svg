@@ -81,6 +81,7 @@ const options = {
   draw_origin: "center",
   offset: 0,
   speed: 1,
+  undraw: false,
 }
 ```
 
@@ -141,6 +142,17 @@ The `speed` option allows you to control the speed at which the svg is drawn. It
 Valid Values: any `number` above 0
 <br/>
 Default Value: `1`
+
+---
+
+### Undraw
+
+The `undraw` option allows you to control whether the svg will be drawn or undrawn on scroll. If the value is `true`, the svg will be undrawn on scroll. If the value is `false`, the svg will be drawn on scroll. The default value is `false` which means the svg will be drawn on scroll. It is useful if you want to draw the svg on scroll but undraw it when the user scrolls back up.
+<br/>
+<br/>
+Valid Values: `true` or `false`
+<br/>
+Default Value: `false`
 
 ---
 

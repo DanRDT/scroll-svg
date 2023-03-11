@@ -28,6 +28,7 @@ export class scrollSvgClass {
   }
 }
 
+// a wrapper function used to be able to pass arguments to the event listener
 function functionWrapper(svgPath: SVGPathElement, options: Options) {
   return function inner(event: Event) {
     calcScrollLine(svgPath, options)
