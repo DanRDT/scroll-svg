@@ -51,7 +51,7 @@ body {
   line-height: 1;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 25rem;
+  grid-template-columns: 1fr clamp(19rem, 40vw, 25rem);
 }
 
 /* Scroll Bar */
@@ -83,17 +83,61 @@ main {
   width: 100%;
   min-height: 100%;
   background-color: var(--background-color-darker);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.above-svg img,
+.below-svg img {
+  filter: invert(1);
+  width: 5rem;
+  animation: hover 3s linear 1s reverse infinite;
+}
+
+@keyframes hover {
+  0% {
+    transform: translateY(0.13rem);
+  }
+  10% {
+    transform: translateY(0.17rem);
+  }
+  20% {
+    transform: translateY(0.13rem);
+  }
+  40% {
+    transform: translateY(-0.13rem) scale(1.02);
+  }
+  50% {
+    transform: translateY(-0.2rem) scale(1.02);
+  }
+  60% {
+    transform: translateY(-0.13rem) scale(1.02);
+  }
+  100% {
+    transform: translateY(0.13rem);
+  }
 }
 
 .svg-section {
   width: 100%;
   min-height: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.svg-section svg {
+  display: none;
+  position: absolute;
+  height: 100%;
+}
+.svg-section svg.active {
+  display: flex;
 }
 
 /* SVG Customization Menu */
-
 aside {
-  /* width: 30%; */
   height: 100dvh;
   height: 100vh;
   background-color: var(--background-color-lighter);
@@ -102,13 +146,28 @@ aside {
   align-items: center;
   justify-content: center;
   gap: 4rem;
+  transition: transform 0.3s;
+  position: relative;
+}
+
+.aside-btn {
+  position: absolute;
+  left: -2.5rem;
+  width: 2.5rem;
+  height: 5rem;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  justify-content: center;
+  background-color: var(--background-color-lighter);
+  cursor: pointer;
+  display: none;
 }
 
 /* Svg Picker */
 
 .pick-svg-section {
   position: relative;
-  width: 17rem;
+  width: clamp(15rem, 70vw, 17rem);
   cursor: pointer;
 }
 
@@ -158,12 +217,12 @@ aside {
   transform: scale(1.07);
 }
 
-.pick-svg-lbl.active {
+.pick-svg-section.active .pick-svg-lbl {
   background-color: var(--background-color);
   border: 2px solid var(--background-color-darker);
 }
 
-.dropdown.active {
+.pick-svg-section.active .dropdown {
   display: inline-block;
   overflow-y: scroll;
   max-height: 65vh;
@@ -245,4 +304,27 @@ aside {
 
 .svg-method:hover {
   outline: 1px solid var(--secondary-color);
+}
+
+@media (max-width: 750px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+  aside {
+    width: clamp(17rem, 80vw, 25rem);
+    position: absolute;
+    right: 0;
+    transform: translateX(100%);
+  }
+  aside.active {
+    transform: translateX(0);
+  }
+  aside.active .aside-btn {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  .aside-btn {
+    display: flex;
+    transition: transform 0.3s, opacity 0.3s;
+  }
 }
