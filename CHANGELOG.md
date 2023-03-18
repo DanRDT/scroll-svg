@@ -10,13 +10,13 @@
 
 ### Minor Changes
 
-- a2dc4d5: Offest option and Speed option now functional
+- a2dc4d5: Offset option and Speed option now functional
 
 ## 0.3.0
 
 ### Minor Changes
 
-- f8e5078: draw_origin property now avaliable
+- f8e5078: draw_origin property now available
 
 ## 0.2.0
 
@@ -34,4 +34,4 @@
 
 ### Patch Changes
 
-- 68990c5: Inital ChangeSet
+- 68990c5: Initial ChangeSet

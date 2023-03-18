@@ -152,7 +152,7 @@ Default Value: `0`
 
 ### Speed
 
-The `speed` option allows you to control the speed at which the svg is drawn. It takes any number above **zero** as a value. The higher the number, the faster the svg will be drawn. The default value is `1` which is the normal speed. If you want to draw the svg half as fast, you would use `0.5` as the value. It is useful if you want to draw multiple svgs at different speeds or if you want to draw the svg slower or faster than normal.
+The `speed` option allows you to control the speed at which the svg is drawn. It takes any number above **zero** as a value. The higher the number, the faster the svg will be drawn. The default value is `1` which is the normal speed. If you want to draw the svg half as fast, you would use `0.5` as the value. It is useful if you want to draw multiple SVGs at different speeds or if you want to draw the svg slower or faster than normal.
 <br/>
 <br/>
 Valid Values: any `number` above 0
