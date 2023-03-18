@@ -19,12 +19,22 @@
       </section>
     </main>
     <aside>
-      <div>Pick Svg</div>
+      <section class="pick-svg-section">
+        <div tabindex="0" class="pick-svg-lbl">
+          <h3>Pick Svg</h3>
+          <img class="dropdown-arrow" src="./imgs/dropdown-arrow.svg" alt="">
+        </div>
+        <div class="dropdown">
+            <figure tabindex="0"><img src="./imgs/svg1.svg" alt=""></figure>
+            <figure tabindex="0"><img src="./imgs/svg2.svg" alt=""></figure>
+            <figure tabindex="0"><img src="./imgs/svg3.svg" alt=""></figure>
+        </div>
+      </section>
       <section class="options-section">
-        <h3 class="options-text">const options = {</h3>
+        <h3 class="options-text"><span class="const">const</span> <span class="variable">options</span> = <span class="bracket">{</span></h3>
         <div class="options-container">
           <div class="option">
-            <h3 class="options-text">invert:</h3>
+            <h3 class="options-text"><span class="option-name">invert</span>:</h3>
             <select name="invert" id="invert">
               <option value="true">true</option>
               <option value="false">false</option>
@@ -32,22 +42,22 @@
             <a href="https://github.com/DanRDT/scroll-svg#invert" target="_blank" rel="noopener noreferrer"><img class="more-info" src="./imgs/more-info.svg" title="More info about this option" alt="more info" /></a>
           </div>
           <div class="option">
-            <h3 class="options-text">draw_origin:</h3>
+            <h3 class="options-text"><span class="option-name">draw_origin</span>:</h3>
             <input type="text"></input>
             <a href="https://github.com/DanRDT/scroll-svg#draw-origin" target="_blank" rel="noopener noreferrer"><img class="more-info" src="./imgs/more-info.svg" title="More info about this option" alt="more info" /></a>
           </div>
           <div class="option">
-            <h3 class="options-text">offset:</h3>
+            <h3 class="options-text"><span class="option-name">offset</span>:</h3>
             <input type="text"></input>
             <a href="https://github.com/DanRDT/scroll-svg#offset" target="_blank" rel="noopener noreferrer"><img class="more-info" src="./imgs/more-info.svg" title="More info about this option" alt="more info" /></a>
           </div>
           <div class="option">
-            <h3 class="options-text">speed:</h3>
+            <h3 class="options-text"><span class="option-name">speed</span>:</h3>
             <input type="text"></input>
             <a href="https://github.com/DanRDT/scroll-svg#speed" target="_blank" rel="noopener noreferrer"><img class="more-info" src="./imgs/more-info.svg" title="More info about this option" alt="more info" /></a>
           </div>
           <div class="option">
-            <h3 class="options-text">undraw:</h3>
+            <h3 class="options-text"><span class="option-name">undraw</span>:</h3>
             <select name="undraw" id="undraw">
               <option value="true">true</option>
               <option value="false">false</option>
@@ -55,7 +65,7 @@
             <a href="https://github.com/DanRDT/scroll-svg#undraw" target="_blank" rel="noopener noreferrer"><img class="more-info" src="./imgs/more-info.svg" title="More info about this option" alt="more info" /></a>
           </div>
         </div>
-        <h3 class="options-text">}</h3>
+        <h3 class="options-text"><span class="bracket">}</span></h3>
       </section>
       <section class="svg-methods">
         <h3 class="svg-method">addListener()</h3>
