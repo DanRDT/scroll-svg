@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.1.0
+
+### Minor Changes
+
+- edd32b6: Now works with all scroll containers, not just window.
+
 ## 1.0.0
 
 ### Major Changes
