@@ -1,16 +1,14 @@
 import { defaultOptions } from "."
 import { OptionalOptions, Options } from "./types"
 import calcPercentToDraw from "./utils/calcPercentToDraw"
-import calcAndDrawScrollLine from "./utils/calcAndDrawScrollLine"
+import calcScrollLine from "./utils/calcAndDrawScrollLine"
 import { validateOptions } from "./utils/inputValidation"
 import setupSvgPath from "./utils/minor/setupSvgPath"
 
 export class scrollSvgClass {
   private svgPath: SVGPathElement
   private options: Options
-  private animationFrame: number = 0
-  private isActive: boolean = true
-  // private listener: (event: Event) => void
+  private listener: (event: Event) => void
 
   constructor(svgPath: SVGPathElement, options: Options) {
     this.svgPath = svgPath
@@ -18,26 +16,18 @@ export class scrollSvgClass {
 
     // initialize svgPath
     setupSvgPath(svgPath)
-    calcAndDrawScrollLine(svgPath, options)
+    calcScrollLine(svgPath, options)
 
-    animationFrame(this)
+    this.listener = functionWrapper(this.svgPath, this.options)
 
-    // this.listener = functionWrapper(this.svgPath, this.options)
-
-    // const animate = () => functionWrapper(this.svgPath, this.options)
-
-    // this.animationFrame = requestAnimationFrame(animate)
-
-    // window.addEventListener("scroll", this.listener)
+    window.addEventListener("scroll", this.listener)
   }
 
-  animate() {
-    if (this.isActive) return
-    this.isActive = true
-    animationFrame(this)
+  addListener() {
+    window.addEventListener("scroll", this.listener)
   }
-  stopAnimating() {
-    this.isActive = false
+  removeListener() {
+    window.removeEventListener("scroll", this.listener)
   }
 
   changeOptions(userOptions: OptionalOptions) {
@@ -45,6 +35,13 @@ export class scrollSvgClass {
 
     if (validateOptions(options, userOptions) > 0) return
     this.options = options
+
+    // reset listener
+    this.removeListener()
+    this.listener = functionWrapper(this.svgPath, this.options)
+    this.addListener()
+
+    calcScrollLine(this.svgPath, options)
   }
 
   getOptions() {
@@ -69,28 +66,15 @@ export class scrollSvgClass {
 // a wrapper function used to be able to pass arguments to the event listener
 function functionWrapper(svgPath: SVGPathElement, options: Options) {
   return function inner(event: Event) {
-    calcAndDrawScrollLine(svgPath, options)
-  }
-}
-
-const animationFrame = (scrollSvgObj: any) => {
-  calcAndDrawScrollLine(scrollSvgObj.svgPath, scrollSvgObj.options)
-
-  if (scrollSvgObj.isActive) {
-    scrollSvgObj.animationFrame = requestAnimationFrame(function () {
-      animationFrame(scrollSvgObj)
-    })
-  } else {
-    cancelAnimationFrame(scrollSvgObj.animationFrame)
-    scrollSvgObj.animationFrame = 0
+    calcScrollLine(svgPath, options)
   }
 }
 
 // an empty replica class of scrollSvgClass to return when the input is invalid
 export class scrollSvgClassEmpty {
   constructor() {}
-  animate() {}
-  stopAnimating() {}
+  addListener() {}
+  removeListener() {}
   changeOptions() {}
   getOptions() {
     return defaultOptions

@@ -10,4 +10,6 @@ const svg2 = scrollSvg(svgPath2, { draw_origin: "bottom" })
 const svg3 = scrollSvg(svgPath3, { offset: 150 })
 const svg4 = scrollSvg(svgPath4, { undraw: true })
 
-console.log(svg4.getPercentageDrawn())
+setTimeout(() => {
+  svg1.changeOptions({ undraw: true })
+}, 3000)
