@@ -9,26 +9,20 @@ export class scrollSvgClass {
   private svgPath: SVGPathElement
   private options: Options
   private animationFrame: number = 0
+  private prevBoundingRectTop: number
   private isActive: boolean = true
   // private listener: (event: Event) => void
 
   constructor(svgPath: SVGPathElement, options: Options) {
     this.svgPath = svgPath
     this.options = options
+    this.prevBoundingRectTop = svgPath.getBoundingClientRect().top
 
     // initialize svgPath
     setupSvgPath(svgPath)
     calcAndDrawScrollLine(svgPath, options)
 
     animationFrame(this)
-
-    // this.listener = functionWrapper(this.svgPath, this.options)
-
-    // const animate = () => functionWrapper(this.svgPath, this.options)
-
-    // this.animationFrame = requestAnimationFrame(animate)
-
-    // window.addEventListener("scroll", this.listener)
   }
 
   animate() {
@@ -36,8 +30,10 @@ export class scrollSvgClass {
     this.isActive = true
     animationFrame(this)
   }
+
   stopAnimating() {
     this.isActive = false
+    this.animationFrame = 0
   }
 
   changeOptions(userOptions: OptionalOptions) {
@@ -74,15 +70,19 @@ function functionWrapper(svgPath: SVGPathElement, options: Options) {
 }
 
 const animationFrame = (scrollSvgObj: any) => {
-  calcAndDrawScrollLine(scrollSvgObj.svgPath, scrollSvgObj.options)
+  // check if user has scrolled
+  if (scrollSvgObj.prevBoundingRectTop !== scrollSvgObj.svgPath.getBoundingClientRect().top) {
+    calcAndDrawScrollLine(scrollSvgObj.svgPath, scrollSvgObj.options)
+    scrollSvgObj.prevBoundingRectTop = scrollSvgObj.svgPath.getBoundingClientRect().top
+  }
 
+  // check if user still wishes to continue animating
   if (scrollSvgObj.isActive) {
     scrollSvgObj.animationFrame = requestAnimationFrame(function () {
       animationFrame(scrollSvgObj)
     })
   } else {
     cancelAnimationFrame(scrollSvgObj.animationFrame)
-    scrollSvgObj.animationFrame = 0
   }
 }
 
