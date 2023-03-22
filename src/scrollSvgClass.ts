@@ -11,9 +11,9 @@ export class scrollSvgClass {
   private animationFrame: number = 0
   private prevBoundingRectTop: number
   private isActive: boolean = true
-  // private listener: (event: Event) => void
 
   constructor(svgPath: SVGPathElement, options: Options) {
+    // initialize class variables
     this.svgPath = svgPath
     this.options = options
     this.prevBoundingRectTop = svgPath.getBoundingClientRect().top
@@ -22,6 +22,7 @@ export class scrollSvgClass {
     setupSvgPath(svgPath)
     calcAndDrawScrollLine(svgPath, options)
 
+    //start animating
     animationFrame(this)
   }
 
@@ -39,8 +40,9 @@ export class scrollSvgClass {
   changeOptions(userOptions: OptionalOptions) {
     const options = { ...this.options, ...userOptions }
 
-    if (validateOptions(options, userOptions) > 0) return
+    if (validateOptions(options, userOptions) > 0) return false
     this.options = options
+    return true
   }
 
   getOptions() {
@@ -59,13 +61,6 @@ export class scrollSvgClass {
   }
   fill() {
     this.svgPath.style.strokeDashoffset = "0"
-  }
-}
-
-// a wrapper function used to be able to pass arguments to the event listener
-function functionWrapper(svgPath: SVGPathElement, options: Options) {
-  return function inner(event: Event) {
-    calcAndDrawScrollLine(svgPath, options)
   }
 }
 
@@ -91,7 +86,9 @@ export class scrollSvgClassEmpty {
   constructor() {}
   animate() {}
   stopAnimating() {}
-  changeOptions() {}
+  changeOptions() {
+    return false
+  }
   getOptions() {
     return defaultOptions
   }

@@ -59,20 +59,20 @@ const svgPath = document.querySelector("#scroll-line") as SVGPathElement
 //                                                     ^^^^^^^^^^^^^^^^^
 ```
 
-### Stop the animation or remove the scroll event listener
+### Stop the animation
 
-To stop the svg path, use the .removeListener() method on the svg object.
+To stop the svg path, use the .stopAnimating() method on the svg object.
 
 ```javascript
-svg.removeListener()
+svg.stopAnimating()
 ```
 
 ### Reactivate the animation
 
-To continue the svg path, use the .addListener() method on the svg object.
+To continue the svg path, use the .animate() method on the svg object.
 
 ```javascript
-svg.addListener()
+svg.animate()
 ```
 
 ---
@@ -114,6 +114,8 @@ To change the options after initialization, use the `.changeOptions()` method on
 ```javascript
 svg.changeOptions({ undraw: true })
 ```
+
+The `.changeOptions()` method also returns `true` if the options were changed successfully and `false` if they were not.
 
 ---
 
@@ -200,7 +202,7 @@ const currentSvgPath = svg.getSvgPath()
 
 ### Clear the svg path
 
-This makes the svg path disappear. It will be draw again when the user scrolls, so use `removeListener()` if you don't want it to be drawn again.
+This makes the svg path disappear. It will be draw again when the user scrolls, so use `stopAnimating()` if you don't want it to be drawn again.
 
 ```javascript
 svg.clear()
@@ -208,7 +210,7 @@ svg.clear()
 
 ### Draw the svg path completely
 
-This draws the svg path completely. It will be drawn back to the scroll position when the user scrolls, so use `removeListener()` if you don't want it to be drawn back to the scroll position.
+This draws the svg path completely. It will be drawn back to the scroll position when the user scrolls, so use `stopAnimating()` if you don't want it to be drawn back to the scroll position.
 
 ```javascript
 svg.fill()
@@ -220,13 +222,13 @@ svg.fill()
 
 ## Using ScrollSvg with React
 
-To use ScrollSvg with React, you can use the `useEffect` hook to add the scroll event listener and remove it when the component unmounts. Everything else is the same as the examples above.
+To use ScrollSvg with React, you can use the `useEffect` hook to start animating when the component mounts and stop when the component unmounts. Everything else is the same as the examples above.
 
 ```javascript
 const svgPath = document.querySelector("#scroll-line")
 
 useEffect(() => {
   const svg = scrollSVG(svgPath)
-  return () => svg.removeListener()
+  return () => svg.stopAnimating()
 }, [])
 ```
