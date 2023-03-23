@@ -12,6 +12,8 @@ Scroll SVG is a library that allows you to effortlessly animate/draw SVG paths o
 
 Setup is as simple as adding an id to the path element of the svg and passing the element to the `scrollSVG` function. The rest of the docs will show you how to use the library, including the `options` parameter.
 
+Check out the interactive [demo](https://pulber.dev/scroll-svg/).
+
 ---
 
 ---
@@ -115,7 +117,7 @@ To change the options after initialization, use the `.changeOptions()` method on
 svg.changeOptions({ undraw: true })
 ```
 
-The `.changeOptions()` method also returns `true` if the options were changed successfully and `false` if they were not.
+The `.changeOptions()` method also returns `true` if the options were changed successfully and `false` if they were not. Also, the svg won't be redrawn until the next scroll event. So if you you want the svg to be updated with the new options immediately, you can use the `.redraw()` method.
 
 ---
 
@@ -177,6 +179,14 @@ Default Value: `false`
 ---
 
 ## Other Methods
+
+### Redraw the svg
+
+To redraw the svg, use the `.redraw()` method on the svg object. This is useful if want the svg to be redrawn before next scroll event.
+
+```javascript
+svg.redraw()
+```
 
 ### Get the percentage of the svg path that has been drawn
 

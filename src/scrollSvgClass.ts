@@ -37,6 +37,10 @@ export class scrollSvgClass {
     this.animationFrame = 0
   }
 
+  redraw() {
+    calcAndDrawScrollLine(this.svgPath, this.options)
+  }
+
   changeOptions(userOptions: OptionalOptions) {
     const options = { ...this.options, ...userOptions }
 
@@ -86,6 +90,7 @@ export class scrollSvgClassEmpty {
   constructor() {}
   animate() {}
   stopAnimating() {}
+  redraw() {}
   changeOptions() {
     return false
   }
