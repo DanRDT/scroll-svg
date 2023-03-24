@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.1.1
+
+### Patch Changes
+
+- 255aa60: redraw method added and link to interactive demo
+
 ## 1.1.0
 
 ### Minor Changes
