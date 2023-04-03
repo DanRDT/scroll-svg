@@ -226,6 +226,14 @@ This draws the svg path completely. It will be drawn back to the scroll position
 svg.fill()
 ```
 
+### Delete any listeners for the svg path
+
+Use the `.remove()` method to delete any listeners for the svg path. This is useful if you want to stop animating the svg path when the component unmounts.
+
+```javascript
+svg.remove()
+```
+
 ---
 
 ---
@@ -239,6 +247,6 @@ useEffect(() => {
   const svgPath = document.querySelector("#scroll-line")
   const svg = scrollSVG(svgPath)
 
-  return () => svg.stopAnimating()
+  return () => svg.remove()
 }, [])
 ```

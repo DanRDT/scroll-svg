@@ -1,4 +1,4 @@
-import { defaultOptions } from "."
+import { defaultOptions } from "./index"
 import { OptionalOptions, Options } from "./types"
 import calcPercentToDraw from "./utils/calcPercentToDraw"
 import calcAndDrawScrollLine from "./utils/calcAndDrawScrollLine"
@@ -6,12 +6,13 @@ import { validateOptions } from "./utils/inputValidation"
 import setupSvgPath from "./utils/minor/setupSvgPath"
 
 export class scrollSvgClass {
-  private svgPath: SVGPathElement
-  private options: Options
-  private animationFrame: number = 0
-  private prevBoundingRectTop: number
-  private isActive: boolean = true
-  private observer: IntersectionObserver
+  svgPath: SVGPathElement
+  options: Options
+  animationFrame: number = 0
+  prevBoundingRectTop: number
+  isActive: boolean = true
+  isObservable: boolean = true
+  observer: IntersectionObserver
 
   constructor(svgPath: SVGPathElement, options: Options) {
     // initialize class variables
@@ -23,21 +24,19 @@ export class scrollSvgClass {
     setupSvgPath(svgPath)
     calcAndDrawScrollLine(svgPath, options)
 
-    //start animating
-    animationFrame(this)
-
     this.observer = new IntersectionObserver(
       (items) => {
         items.map((item) => {
           if (item.isIntersecting) {
-            this.animate()
+            this.isObservable = true
+            animationFrame(this)
           } else {
-            this.stopAnimating()
+            this.isObservable = false
           }
         })
       },
       {
-        rootMargin: "25px 0px",
+        rootMargin: "50px 0px",
       }
     )
 
@@ -49,7 +48,6 @@ export class scrollSvgClass {
     this.isActive = true
     animationFrame(this)
   }
-
   stopAnimating() {
     this.isActive = false
     this.animationFrame = 0
@@ -58,7 +56,6 @@ export class scrollSvgClass {
   redraw() {
     calcAndDrawScrollLine(this.svgPath, this.options)
   }
-
   changeOptions(userOptions: OptionalOptions) {
     const options = { ...this.options, ...userOptions }
 
@@ -84,18 +81,21 @@ export class scrollSvgClass {
   fill() {
     this.svgPath.style.strokeDashoffset = "0"
   }
+  remove() {
+    this.stopAnimating()
+    this.observer.disconnect()
+    this.isObservable = false
+  }
 }
 
-const animationFrame = (scrollSvgObj: any) => {
+const animationFrame = (scrollSvgObj: scrollSvgClass) => {
   // check if user has scrolled if so, recalculate and redraw the scroll line
   if (scrollSvgObj.prevBoundingRectTop !== scrollSvgObj.svgPath.getBoundingClientRect().top) {
     calcAndDrawScrollLine(scrollSvgObj.svgPath, scrollSvgObj.options)
     scrollSvgObj.prevBoundingRectTop = scrollSvgObj.svgPath.getBoundingClientRect().top
   }
-  console.log(scrollSvgObj.svgPath.id)
-
-  // check if user still wishes to continue animating
-  if (scrollSvgObj.isActive) {
+  // check if user still wishes to continue animating and if its visible
+  if (scrollSvgObj.isActive && scrollSvgObj.isObservable) {
     scrollSvgObj.animationFrame = requestAnimationFrame(function () {
       animationFrame(scrollSvgObj)
     })
@@ -125,4 +125,5 @@ export class scrollSvgClassEmpty {
   }
   clear() {}
   fill() {}
+  remove() {}
 }
