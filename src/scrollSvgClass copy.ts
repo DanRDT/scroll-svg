@@ -11,7 +11,6 @@ export class scrollSvgClass {
   private animationFrame: number = 0
   private prevBoundingRectTop: number
   private isActive: boolean = true
-  private observer: IntersectionObserver
 
   constructor(svgPath: SVGPathElement, options: Options) {
     // initialize class variables
@@ -25,23 +24,6 @@ export class scrollSvgClass {
 
     //start animating
     animationFrame(this)
-
-    this.observer = new IntersectionObserver(
-      (items) => {
-        items.map((item) => {
-          if (item.isIntersecting) {
-            this.animate()
-          } else {
-            this.stopAnimating()
-          }
-        })
-      },
-      {
-        rootMargin: "25px 0px",
-      }
-    )
-
-    this.observer.observe(this.svgPath)
   }
 
   animate() {
@@ -87,12 +69,11 @@ export class scrollSvgClass {
 }
 
 const animationFrame = (scrollSvgObj: any) => {
-  // check if user has scrolled if so, recalculate and redraw the scroll line
+  // check if user has scrolled
   if (scrollSvgObj.prevBoundingRectTop !== scrollSvgObj.svgPath.getBoundingClientRect().top) {
     calcAndDrawScrollLine(scrollSvgObj.svgPath, scrollSvgObj.options)
     scrollSvgObj.prevBoundingRectTop = scrollSvgObj.svgPath.getBoundingClientRect().top
   }
-  console.log(scrollSvgObj.svgPath.id)
 
   // check if user still wishes to continue animating
   if (scrollSvgObj.isActive) {

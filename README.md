@@ -235,10 +235,10 @@ svg.fill()
 To use ScrollSvg with React, you can use the `useEffect` hook to start animating when the component mounts and stop when the component unmounts. Everything else is the same as the examples above.
 
 ```javascript
-const svgPath = document.querySelector("#scroll-line")
-
 useEffect(() => {
+  const svgPath = document.querySelector("#scroll-line")
   const svg = scrollSVG(svgPath)
+
   return () => svg.stopAnimating()
 }, [])
 ```
