@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.2.0
+
+### Minor Changes
+
+- bee31ec: Performance Increase
+
 ## 1.1.1
 
 ### Patch Changes
