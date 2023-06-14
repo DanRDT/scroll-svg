@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.2.1
+
+### Patch Changes
+
+- a9d2bbb: JSDoc Added
+
 ## 1.2.0
 
 ### Minor Changes
