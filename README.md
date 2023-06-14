@@ -46,9 +46,9 @@ yarn add scroll-svg
 To draw the svg path, import `scrollSVG` and pass the svg path element to `scrollSVG`.
 
 ```javascript
-import scrollSVG from "scroll-svg"
+import scrollSVG from 'scroll-svg'
 
-const svgPath = document.querySelector("#scroll-line")
+const svgPath = document.querySelector('#scroll-line')
 const svg = scrollSVG(svgPath)
 ```
 
@@ -57,13 +57,13 @@ const svg = scrollSVG(svgPath)
 To use with Typescript, change it from the implicit `Element|null` to `SVGPathElement` type before passing it to `scrollSVG`.
 
 ```typescript
-const svgPath = document.querySelector("#scroll-line") as SVGPathElement
+const svgPath = document.querySelector('#scroll-line') as SVGPathElement
 //                                                     ^^^^^^^^^^^^^^^^^
 ```
 
 ### Stop the animation
 
-To stop the svg path, use the .stopAnimating() method on the svg object.
+To stop the svg path animation, use the .stopAnimating() method on the svg object.
 
 ```javascript
 svg.stopAnimating()
@@ -71,7 +71,7 @@ svg.stopAnimating()
 
 ### Reactivate the animation
 
-To continue the svg path, use the .animate() method on the svg object.
+To continue the svg path animation after it was stopped, use the .animate() method on the svg object.
 
 ```javascript
 svg.animate()
@@ -88,7 +88,7 @@ These are the default options.
 ```javascript
 const options = {
   invert: false,
-  draw_origin: "center",
+  draw_origin: 'center',
   offset: 0,
   speed: 1,
   undraw: false,
@@ -106,7 +106,7 @@ const svg = scrollSVG(svg, options)
 It is not required to use all of the options. You can pass just the options you need and leave the others out like in the example below.
 
 ```javascript
-const svg = scrollSVG(svg, { invert: true, draw_origin: "center" })
+const svg = scrollSVG(svg, { invert: true, draw_origin: 'center' })
 ```
 
 ## Changing options after initialization
@@ -167,7 +167,7 @@ Default Value: `1`
 
 ### Undraw
 
-The `undraw` option allows you to control whether the svg will be drawn or undrawn on scroll. If the value is `true`, the svg will be undrawn on scroll. If the value is `false`, the svg will be drawn on scroll. The default value is `false` which means the svg will be drawn on scroll. It is useful if you want to draw the svg on scroll but undraw it when the user scrolls back up.
+The `undraw` option allows you to control whether the svg will be drawn or undrawn on scroll. If the value is `true`, the svg will be undrawn on scroll. If the value is `false`, the svg will be drawn on scroll. The default value is `false` which means the svg will be drawn on scroll. It is useful if you want to draw the svg on scroll but undraw it when the user scrolls back up. (Use the `.changeOptions()` for that)
 <br/>
 <br/>
 Valid Values: `true` or `false`
@@ -244,7 +244,7 @@ To use ScrollSvg with React, you can use the `useEffect` hook to start animating
 
 ```javascript
 useEffect(() => {
-  const svgPath = document.querySelector("#scroll-line")
+  const svgPath = document.querySelector('#scroll-line')
   const svg = scrollSVG(svgPath)
 
   return () => svg.remove()

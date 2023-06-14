@@ -103,3 +103,7 @@ section:nth-of-type(2n) {
   width: auto;
   height: 100%;
 }
+
+#scroll-line-2 {
+  transition: all 0s ease;
+}

@@ -24,7 +24,9 @@
   "keywords": [
     "scroll",
     "svg",
-    "animations"
+    "animations",
+    "animate svg",
+    "scroll animation"
   ],
   "author": "Daniel Pulber",
   "license": "MIT",
