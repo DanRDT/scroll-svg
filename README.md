@@ -18,7 +18,11 @@ Check out the interactive [demo](https://pulber.dev/scroll-svg/).
 
 ---
 
-## Setup
+<br/>
+
+# Setup
+
+## Html
 
 First add an id to the path of the svg you wish to draw on scroll
 
@@ -77,11 +81,27 @@ To continue the svg path animation after it was stopped, use the .animate() meth
 svg.animate()
 ```
 
----
+## Recommendations
+
+Based on the svg you are using, you may need to add some css like this to make it draw smoother.
+
+```css
+#scroll-line {
+  transition: stroke-dashoffset 20ms ease-in-out;
+}
+```
+
+<br/>
 
 ---
 
-## Options
+<br/>
+
+---
+
+<br/>
+
+# Options
 
 These are the default options.
 
@@ -100,13 +120,13 @@ const options = {
 Pass the options as the second argument to `scrollSVG`.
 
 ```javascript
-const svg = scrollSVG(svg, options)
+const svg = scrollSVG(svgPath, options)
 ```
 
 It is not required to use all of the options. You can pass just the options you need and leave the others out like in the example below.
 
 ```javascript
-const svg = scrollSVG(svg, { invert: true, draw_origin: 'center' })
+const svg = scrollSVG(svgPath, { invert: true, draw_origin: 'center' })
 ```
 
 ## Changing options after initialization
@@ -121,7 +141,7 @@ The `.changeOptions()` method also returns `true` if the options were changed su
 
 ---
 
-### Invert
+## Invert
 
 The `invert` option inverts which direction the svg draws from. Sometimes an svg draws backwards by default and the `invert` option is required to correct it.
 <br/>
@@ -132,7 +152,7 @@ Default Value: `false`
 
 ---
 
-### Draw Origin
+## Draw Origin
 
 The `draw_origin` option controls at which point on the screen the svg gets drawn, with `0` being the **top** of the screen and `1` being the **bottom**. By default it draws from the `center` of the screen or at `0.5`. The option takes the values `top` which is `0.25`, `center` which is `0.5`, `bottom` which is `0.75`, or any decimal between `0` and `1`.
 <br/>
@@ -143,7 +163,7 @@ Default Value: `center`
 
 ---
 
-### Offset
+## Offset
 
 The `offset` option allow you to offset the svg drawing from the `draw_origin` by a set amount of **pixels**. This is useful if you want to draw the svg before it reaches the `draw_origin` or after it passes it. It takes any number as a value. If the value is negative, the svg will be drawn the `offset` amount of pixels behind the `draw_origin` and if the value is positive, the svg will be ahead the `draw_origin` by the `offset` amount. So if you want to draw the svg 100 pixels before the `draw_origin`, you would use `-100` as the value.
 <br/>
@@ -154,7 +174,7 @@ Default Value: `0`
 
 ---
 
-### Speed
+## Speed
 
 The `speed` option allows you to control the speed at which the svg is drawn. It takes any number above **zero** as a value. The higher the number, the faster the svg will be drawn. The default value is `1` which is the normal speed. If you want to draw the svg half as fast, you would use `0.5` as the value. It is useful if you want to draw multiple SVGs at different speeds or if you want to draw the svg slower or faster than normal.
 <br/>
@@ -165,7 +185,7 @@ Default Value: `1`
 
 ---
 
-### Undraw
+## Undraw
 
 The `undraw` option allows you to control whether the svg will be drawn or undrawn on scroll. If the value is `true`, the svg will be undrawn on scroll. If the value is `false`, the svg will be drawn on scroll. The default value is `false` which means the svg will be drawn on scroll. It is useful if you want to draw the svg on scroll but undraw it when the user scrolls back up. (Use the `.changeOptions()` for that)
 <br/>
@@ -174,13 +194,19 @@ Valid Values: `true` or `false`
 <br/>
 Default Value: `false`
 
----
+<br/>
 
 ---
 
-## Other Methods
+<br/>
 
-### Redraw the svg
+---
+
+<br/>
+
+# Other Methods
+
+## Redraw the svg
 
 To redraw the svg, use the `.redraw()` method on the svg object. This is useful if want the svg to be redrawn before next scroll event.
 
@@ -188,7 +214,7 @@ To redraw the svg, use the `.redraw()` method on the svg object. This is useful 
 svg.redraw()
 ```
 
-### Get the percentage of the svg path that has been drawn
+## Get the percentage of the svg path that has been drawn
 
 To get the percentage of the svg path that has been drawn, use the `.getPercentage()` method on the svg object. This returns a number between `0` and `100`. The percentage doesn't take into account the `offset` option, so if the svg is drawn 50% of the way and the `offset` is 100 pixels, the percentage will still be 50%. Also note that the if undraw is `true`, the percentage will still reflect the percentage of the svg path that has been drawn, not the percentage of the svg that has been scrolled past.
 
@@ -196,13 +222,13 @@ To get the percentage of the svg path that has been drawn, use the `.getPercenta
 const percentage = svg.getPercentageDrawn()
 ```
 
-### Get the current options
+## Get the current options
 
 ```javascript
 const currentOptions = svg.getOptions()
 ```
 
-### Get the svg path
+## Get the svg path
 
 This returns the svg path element that was passed to `scrollSVG`.
 
@@ -210,7 +236,7 @@ This returns the svg path element that was passed to `scrollSVG`.
 const currentSvgPath = svg.getSvgPath()
 ```
 
-### Clear the svg path
+## Clear the svg path
 
 This makes the svg path disappear. It will be draw again when the user scrolls, so use `stopAnimating()` if you don't want it to be drawn again.
 
@@ -218,7 +244,7 @@ This makes the svg path disappear. It will be draw again when the user scrolls, 
 svg.clear()
 ```
 
-### Draw the svg path completely
+## Draw the svg path completely
 
 This draws the svg path completely. It will be drawn back to the scroll position when the user scrolls, so use `stopAnimating()` if you don't want it to be drawn back to the scroll position.
 
@@ -226,7 +252,7 @@ This draws the svg path completely. It will be drawn back to the scroll position
 svg.fill()
 ```
 
-### Delete any listeners for the svg path
+## Delete any listeners for the svg path
 
 Use the `.remove()` method to delete any listeners for the svg path. This is useful if you want to stop animating the svg path when the component unmounts.
 
@@ -234,11 +260,17 @@ Use the `.remove()` method to delete any listeners for the svg path. This is use
 svg.remove()
 ```
 
----
+<br/>
 
 ---
 
-## Using ScrollSvg with React
+<br/>
+
+---
+
+<br/>
+
+# Using ScrollSvg with React
 
 To use ScrollSvg with React, you can use the `useEffect` hook to start animating when the component mounts and stop when the component unmounts. Everything else is the same as the examples above.
 
