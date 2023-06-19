@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.3.0
+
+### Minor Changes
+
+- 2f35abb: scrollSvgNullable function
+
 ## 1.2.1
 
 ### Patch Changes
