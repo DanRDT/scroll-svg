@@ -65,7 +65,7 @@ export interface ScrollSvgClass {
    */
   isActive: boolean
   /**
-   * Whether the SVG Path is currently observed by the IntersectionObserver.
+   * Whether the SVG Path is currently observed by the IntersectionObserver. Has a 50px buffer.
    */
   isObservable: boolean
   /**

@@ -5,6 +5,9 @@ import calcAndDrawScrollLine from './utils/calcAndDrawScrollLine'
 import { validateOptions } from './utils/inputValidation'
 import setupSvgPath from './utils/minor/setupSvgPath'
 
+/**
+ * The ScrollSvgClass used to control when and how the svg is drawn
+ */
 export class scrollSvgClass implements ScrollSvgClass {
   svgPath: SVGPathElement
   options: Options
@@ -29,7 +32,7 @@ export class scrollSvgClass implements ScrollSvgClass {
         items.map(item => {
           if (item.isIntersecting) {
             this.isObservable = true
-            animationFrame(this)
+            animationFrameFunc(this)
           } else {
             this.isObservable = false
           }
@@ -46,7 +49,7 @@ export class scrollSvgClass implements ScrollSvgClass {
   animate() {
     if (this.isActive) return
     this.isActive = true
-    animationFrame(this)
+    animationFrameFunc(this)
   }
   stopAnimating() {
     this.isActive = false
@@ -88,7 +91,7 @@ export class scrollSvgClass implements ScrollSvgClass {
   }
 }
 
-const animationFrame = (scrollSvgObj: scrollSvgClass) => {
+const animationFrameFunc = (scrollSvgObj: scrollSvgClass) => {
   // check if user has scrolled if so, recalculate and redraw the scroll line
   if (scrollSvgObj.prevBoundingRectTop !== scrollSvgObj.svgPath.getBoundingClientRect().top) {
     calcAndDrawScrollLine(scrollSvgObj.svgPath, scrollSvgObj.options)
@@ -97,14 +100,16 @@ const animationFrame = (scrollSvgObj: scrollSvgClass) => {
   // check if user still wishes to continue animating and if its visible
   if (scrollSvgObj.isActive && scrollSvgObj.isObservable) {
     scrollSvgObj.animationFrame = requestAnimationFrame(function () {
-      animationFrame(scrollSvgObj)
+      animationFrameFunc(scrollSvgObj)
     })
   } else {
     cancelAnimationFrame(scrollSvgObj.animationFrame)
   }
 }
 
-// an empty replica class of scrollSvgClass to return when the input is invalid
+/**
+ * An empty replica class of scrollSvgClass that is returned when the initial input (the SVG path or options) is invalid
+ */
 export class scrollSvgClassEmpty implements ScrollSvgClass {
   svgPath: SVGPathElement
   options: Options = defaultOptions
