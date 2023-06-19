@@ -6,7 +6,7 @@ import { validateOptions } from './utils/inputValidation'
 import setupSvgPath from './utils/minor/setupSvgPath'
 
 /**
- * The ScrollSvgClass used to control when and how the svg is drawn
+ * The ScrollSvgClass used to control how and when the svg is drawn
  */
 export class scrollSvgClass implements ScrollSvgClass {
   svgPath: SVGPathElement
@@ -110,7 +110,7 @@ const animationFrameFunc = (scrollSvgObj: scrollSvgClass) => {
 /**
  * An empty replica class of scrollSvgClass that is returned when the initial input (the SVG path or options) is invalid
  */
-export class scrollSvgClassEmpty implements ScrollSvgClass {
+export class scrollSvgEmptyClass implements ScrollSvgClass {
   svgPath: SVGPathElement
   options: Options = defaultOptions
   animationFrame: number = 0

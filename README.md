@@ -10,7 +10,7 @@
 
 Scroll SVG is a library that allows you to effortlessly animate/draw SVG paths on scroll. It is lightweight and easy to use. It provides a simple API that allows you to easily control the animation of the SVG path. It can be used with any number of SVG paths on a page. It is also compatible with Typescript.
 
-Setup is as simple as adding an id to the path element of the svg and passing the element to the `scrollSVG` function. The rest of the docs will show you how to use the library, including the `options` parameter.
+Setup is as simple as adding an id to the path element of the svg and passing the element to the `scrollSvg` function. The rest of the docs will show you how to use the library, including the `options` parameter.
 
 Check out the interactive [demo](https://pulber.dev/scroll-svg/).
 
@@ -47,18 +47,18 @@ yarn add scroll-svg
 
 ## Animate the SVG
 
-To draw the svg path, import `scrollSVG` and pass the svg path element to `scrollSVG`.
+To draw the svg path, import `scrollSvg` and pass the svg path element to `scrollSvg`.
 
 ```javascript
-import scrollSVG from 'scroll-svg'
+import scrollSvg from 'scroll-svg'
 
 const svgPath = document.querySelector('#scroll-line')
-const svg = scrollSVG(svgPath)
+const svg = scrollSvg(svgPath)
 ```
 
 ### Typescript
 
-To use with Typescript, change it from the implicit `Element|null` to `SVGPathElement` type before passing it to `scrollSVG`.
+To use with Typescript, change it from the implicit `Element|null` to `SVGPathElement` type before passing it to `scrollSvg`.
 
 ```typescript
 const svgPath = document.querySelector('#scroll-line') as SVGPathElement
@@ -117,16 +117,16 @@ const options = {
 
 ## Using the options
 
-Pass the options as the second argument to `scrollSVG`.
+Pass the options as the second argument to `scrollSvg`.
 
 ```javascript
-const svg = scrollSVG(svgPath, options)
+const svg = scrollSvg(svgPath, options)
 ```
 
 It is not required to use all of the options. You can pass just the options you need and leave the others out like in the example below.
 
 ```javascript
-const svg = scrollSVG(svgPath, { invert: true, draw_origin: 'center' })
+const svg = scrollSvg(svgPath, { invert: true, draw_origin: 'center' })
 ```
 
 ## Changing options after initialization
@@ -230,7 +230,7 @@ const currentOptions = svg.getOptions()
 
 ## Get the svg path
 
-This returns the svg path element that was passed to `scrollSVG`.
+This returns the svg path element that was passed to `scrollSvg`.
 
 ```javascript
 const currentSvgPath = svg.getSvgPath()
@@ -270,14 +270,46 @@ svg.remove()
 
 <br/>
 
-# Using ScrollSvg with React
+# Other
+
+## Nullable Scroll Svg
+
+`scrollSvgNullable()` can be used if you want to detect if something went wrong in the setup with the options or svg path. It either returns `ScrollSvgClass` used to control how and when the svg is drawn or it returns `null` if the input is invalid.
+
+```javascript
+import { scrollSvgNullable } from 'scroll-svg'
+
+const svgPath = document.querySelector('#scroll-line')
+const svg = scrollSvgNullable(svgPath)
+
+if (!svg) {
+  // do something
+}
+```
+
+<br/>
+
+### `scrollSvg()` vs `scrollSvgNullable()`
+
+`scrollSvg()` returns either `ScrollSvgClass` or `scrollSvgEmptyClass` if the input is invalid.
+
+`scrollSvgNullable()` returns either `ScrollSvgClass` or `null` if the input is invalid.
+
+The `ScrollSvgClass` is used to control how and when the svg is drawn
+
+The `scrollSvgEmptyClass` is identical to the `scrollSvgClass`, so it wont throw errors when `scrollSvgClass` methods are called.
+All functions performed on `scrollSvgEmptyClass` are performed on a dummy SVG path.
+
+<br/>
+
+## Using ScrollSvg with React
 
 To use ScrollSvg with React, you can use the `useEffect` hook to start animating when the component mounts and stop when the component unmounts. Everything else is the same as the examples above.
 
 ```javascript
 useEffect(() => {
   const svgPath = document.querySelector('#scroll-line')
-  const svg = scrollSVG(svgPath)
+  const svg = scrollSvg(svgPath)
 
   return () => svg.remove()
 }, [])
