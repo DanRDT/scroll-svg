@@ -12,7 +12,21 @@ Scroll SVG is a library that allows you to effortlessly animate/draw SVG paths o
 
 Setup is as simple as adding an id to the path element of the svg and passing the element to the `scrollSvg` function. The rest of the docs will show you how to use the library, including the `options` parameter.
 
-Check out the interactive [demo](https://pulber.dev/scroll-svg/).
+Check out the interactive [demo](https://pulber.dev/scroll-svg/) or the [example code](https://github.com/DanRDT/scroll-svg/tree/main/example).
+
+---
+
+---
+
+# Table of Contents
+
+[Setup](#setup)
+
+[Options](#options)
+
+[Other Methods](#other-methods)
+
+[Other](#other)
 
 ---
 

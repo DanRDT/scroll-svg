@@ -14,7 +14,7 @@
     "test": "vitest run",
     "build": "tsup ./src/index.ts --format cjs,esm --dts",
     "lint": "tsc",
-    "ci": "pnpm run lint && pnpm run test && pnpm run build",
+    "ci": "pnpm run lint && pnpm run build && pnpm run test",
     "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish"
   },
   "repository": {
@@ -26,6 +26,8 @@
     "svg",
     "animations",
     "animate svg",
+    "svg path",
+    "draw svg",
     "scroll animation"
   ],
   "author": "Daniel Pulber",

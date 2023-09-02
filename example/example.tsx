@@ -1,3 +1,5 @@
+// Example React Code
+
 import { useEffect, useState } from 'react'
 import scrollSvg from 'scroll-svg'
 
