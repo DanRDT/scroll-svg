@@ -38,6 +38,8 @@
   "homepage": "https://github.com/DanRDT/scroll-svg#readme",
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
+    "@types/jsdom": "^21.1.2",
+    "jsdom": "^22.1.0",
     "tsup": "^6.6.3",
     "typescript": "^4.9.5",
     "vitest": "^0.29.2"
