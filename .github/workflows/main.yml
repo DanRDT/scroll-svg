@@ -17,5 +17,5 @@ jobs:
           node-version: 16.x
           cache: 'pnpm'
 
-      - run: pnpm install --frozen-lockfile
+      - run: corepack enable && pnpm install --frozen-lockfile
       - run: pnpm run ci
