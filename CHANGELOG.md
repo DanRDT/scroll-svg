@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.4.0
+
+### Minor Changes
+
+- 24337a5: Disable IntersectionObserver (used for increased performance) because most browsers other than firefox don't support path elements
+
 ## 1.3.0
 
 ### Minor Changes
