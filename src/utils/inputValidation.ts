@@ -9,13 +9,17 @@ export function validSvgPath(svgPath: SVGPathElement): Boolean {
   } else if (svgPath.tagName !== 'path') {
     console.error(`${svgPath.outerHTML} is not a path`)
     return false
-  } else if (svgPath.getTotalLength() === 0) {
+  } else if (svgPath.getTotalLength() <= 0) {
     console.error(`${svgPath.outerHTML} has no length`)
     return false
   }
   return true
 }
 
+/**
+ * @param options default options merged with user options
+ * @param userOptions used to display user option errors
+ * @returns the number of errors found in the provided options */
 export function validateOptions(options: Options, userOptions: OptionalOptions): number {
   let errors = 0
   try {

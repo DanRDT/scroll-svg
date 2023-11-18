@@ -71,7 +71,7 @@ export interface ScrollSvgClass {
   /**
    * An instance of an IntersectionObserver. Used for performance.
    */
-  observer: IntersectionObserver
+  // observer: IntersectionObserver
 
   /**
    * To continue the svg path animation after it was stopped, use the .animate() method on the svg object.

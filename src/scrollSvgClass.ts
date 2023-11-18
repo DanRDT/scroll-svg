@@ -15,7 +15,7 @@ export class scrollSvgClass implements ScrollSvgClass {
   prevBoundingRectTop: number
   isActive: boolean = true
   isObservable: boolean = true
-  observer: IntersectionObserver
+  // observer: IntersectionObserver
 
   constructor(svgPath: SVGPathElement, options: Options) {
     // initialize class variables
@@ -27,23 +27,23 @@ export class scrollSvgClass implements ScrollSvgClass {
     setupSvgPath(svgPath)
     calcAndDrawScrollLine(svgPath, options)
 
-    this.observer = new IntersectionObserver(
-      items => {
-        items.map(item => {
-          if (item.isIntersecting) {
-            this.isObservable = true
-            animationFrameFunc(this)
-          } else {
-            this.isObservable = false
-          }
-        })
-      },
-      {
-        rootMargin: '50px 0px',
-      }
-    )
-
-    this.observer.observe(this.svgPath)
+    // Disabled until IntersectionObserver API Bug fixed
+    // this.observer = new IntersectionObserver(
+    //   items => {
+    //     items.map(item => {
+    //       if (item.isIntersecting) {
+    //         this.isObservable = true
+    animationFrameFunc(this)
+    //       } else {
+    //         this.isObservable = false
+    //       }
+    //     })
+    //   },
+    //   {
+    //     rootMargin: '50px 0px',
+    //   }
+    // )
+    // this.observer.observe(this.svgPath)
   }
 
   animate() {
@@ -86,8 +86,8 @@ export class scrollSvgClass implements ScrollSvgClass {
   }
   remove() {
     this.stopAnimating()
-    this.observer.disconnect()
-    this.isObservable = false
+    // this.observer.disconnect()
+    // this.isObservable = false
   }
 }
 
@@ -117,12 +117,12 @@ export class scrollSvgEmptyClass implements ScrollSvgClass {
   prevBoundingRectTop: number = 0
   isActive: boolean = true
   isObservable: boolean = true
-  observer: IntersectionObserver
+  // observer: IntersectionObserver
 
   constructor() {
     console.error('Scroll Svg Class Empty ~ Seems to be an error with your input.')
     this.svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path')
-    this.observer = new IntersectionObserver(function () {})
+    // this.observer = new IntersectionObserver(function () {})
   }
   animate() {}
   stopAnimating() {}
