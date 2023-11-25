@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.4.1
+
+### Patch Changes
+
+- b326b64: Add test to npmignore
+
 ## 1.4.0
 
 ### Minor Changes
