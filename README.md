@@ -20,13 +20,41 @@ Check out the interactive [demo](https://pulber.dev/scroll-svg/) or the [example
 
 # Table of Contents
 
-[Setup](#setup)
+- [Setup](#setup)
 
-[Options](#options)
+  - [HTML](#html)
+  - [Install the package](#install-the-package)
+    - [Animate the SVG](#animate-the-svg)
+    - [Typescript](#typescript)
+    - [Stop the animation](#stop-the-animation)
+    - [Reactivate the animation](#reactivate-the-animation)
+  - [Recommendations](#recommendations)
 
-[Other Methods](#other-methods)
+- [Options](#options)
 
-[Other](#other)
+  - [Using the options](#using-the-options)
+  - [Changing options after initialization](#changing-options-after-initialization)
+  - [Invert](#invert)
+  - [Draw Origin](#draw-origin)
+  - [Offset](#offset)
+  - [Speed](#speed)
+  - [Undraw](#undraw)
+
+- [Other Methods](#other-methods)
+
+  - [Redraw the svg](#redraw-the-svg)
+  - [Get the percentage of the svg path that has been drawn](#get-the-percentage-of-the-svg-path-that-has-been-drawn)
+  - [Get the current options](#get-the-current-options)
+  - [Get the svg path](#get-the-svg-path)
+  - [Clear the svg path](#clear-the-svg-path)
+  - [Draw the svg path completely](#draw-the-svg-path-completely)
+  - [Delete any listeners for the svg path](#delete-any-listeners-for-the-svg-path)
+
+- [Other](#other)
+
+  - [Nullable Scroll Svg](#nullable-scroll-svg)
+    - [scrollSvg VS scrollSvgNullable](#scrollsvg-vs-scrollsvgnullable)
+  - [Using ScrollSvg with React](#using-scrollsvg-with-react)
 
 ---
 
@@ -303,7 +331,7 @@ if (!svg) {
 
 <br/>
 
-### `scrollSvg()` vs `scrollSvgNullable()`
+### scrollSvg VS scrollSvgNullable
 
 `scrollSvg()` returns either `ScrollSvgClass` or `scrollSvgEmptyClass` if the input is invalid.
 

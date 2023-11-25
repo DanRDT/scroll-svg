@@ -11,14 +11,6 @@
   --placeholder-color: #d9d9d9;
 }
 
-/* Fonts */
-@font-face {
-  font-family: 'raleway';
-  src: url('/fonts/raleway-regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 /* Page Elements */
 *,
 *::before,
