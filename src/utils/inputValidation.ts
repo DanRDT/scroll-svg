@@ -9,7 +9,7 @@ export function validSvgPath(svgPath: SVGPathElement): Boolean {
   } else if (svgPath.tagName !== 'path') {
     console.error(`${svgPath.outerHTML} is not a path`)
     return false
-  } else if (svgPath.getTotalLength() <= 0) {
+  } else if (svgPath.getTotalLength() <= 0 || typeof svgPath.getTotalLength() !== 'number') {
     console.error(`${svgPath.outerHTML} has no length`)
     return false
   }
@@ -18,9 +18,9 @@ export function validSvgPath(svgPath: SVGPathElement): Boolean {
 
 /**
  * @param options default options merged with user options
- * @param userOptions used to display user option errors
+ * @param userEnteredOptions used to display user option errors
  * @returns the number of errors found in the provided options */
-export function validateOptions(options: Options, userOptions: OptionalOptions): number {
+export function validateOptions(options: Options, userEnteredOptions: OptionalOptions): number {
   let errors = 0
   try {
     // check keys
@@ -71,7 +71,7 @@ export function validateOptions(options: Options, userOptions: OptionalOptions):
 
     // Check offset
     if (typeof options.offset !== 'number' || Number.isNaN(options.offset)) {
-      console.error(`Invalid offset option. Must be a number. Is currently ~ ${options.offset}`)
+      console.error(`Invalid offset option. Must be a number. Is currently ~ ${typeof options.offset} ~ ${options.offset}`)
       errors++
     }
 
@@ -88,7 +88,7 @@ export function validateOptions(options: Options, userOptions: OptionalOptions):
     }
 
     if (errors > 0) {
-      console.error(`Found ${errors} errors in animation options ~ ${JSON.stringify(userOptions)}`)
+      console.error(`Found ${errors} errors in animation options ~ ${JSON.stringify(userEnteredOptions)}`)
     }
   } catch (error) {
     console.error(`Error validating options ~ ${error}`)
