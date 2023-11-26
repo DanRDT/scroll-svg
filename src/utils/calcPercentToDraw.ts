@@ -1,5 +1,5 @@
-import { Options } from "../types"
-import getDrawOrigin from "./minor/getDrawOrigin"
+import { Options } from '../types'
+import getDrawOrigin from './minor/getDrawOrigin'
 
 // uses svg bounding box to calculate the percent of the svg path that should be drawn
 export default function calcPercentToDraw(svgPath: SVGPathElement, options: Options): number {

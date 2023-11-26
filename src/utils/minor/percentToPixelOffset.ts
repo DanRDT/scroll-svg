@@ -1,4 +1,4 @@
-import { Options } from "../../types"
+import { Options } from '../../types'
 
 // gets the percent as a decimal that the svg should be drawn and converts it to a pixel offset
 export default function percentToPixelOffset(percent: number, svgPath: SVGPathElement, options: Options): number {

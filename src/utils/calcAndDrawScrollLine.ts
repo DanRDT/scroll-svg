@@ -1,6 +1,6 @@
-import { Options } from "../types"
-import calcPercentToDraw from "./calcPercentToDraw"
-import percentToPixelOffset from "./minor/percentToPixelOffset"
+import { Options } from '../types'
+import calcPercentToDraw from './calcPercentToDraw'
+import percentToPixelOffset from './minor/percentToPixelOffset'
 
 export default function calcAndDrawScrollLine(svgPath: SVGPathElement, options: Options) {
   const percentToDraw = calcPercentToDraw(svgPath, options)
@@ -9,5 +9,5 @@ export default function calcAndDrawScrollLine(svgPath: SVGPathElement, options: 
   if (options.invert) {
     pixelOffset = -pixelOffset
   }
-  svgPath.style.strokeDashoffset = pixelOffset + ""
+  svgPath.style.strokeDashoffset = pixelOffset + ''
 }
