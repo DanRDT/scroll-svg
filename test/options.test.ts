@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { defaultOptions } from '../src'
-import { validateOptions } from '../src/utils/inputValidation'
+import { validateOptions } from '../src/utils/setup/inputValidation'
 
 describe('Options Tests', () => {
   it('checks default options', () => {

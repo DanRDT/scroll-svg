@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { JSDOM } from 'jsdom'
-import { validSvgPath } from '../src/utils/inputValidation'
+import { validSvgPath } from '../src/utils/setup/inputValidation'
 import scrollSvg, { defaultOptions, scrollSvgNullable } from '../src'
-import getDrawOrigin from '../src/utils/minor/getDrawOrigin'
-import percentToPixelOffset from '../src/utils/minor/percentToPixelOffset'
+import { getDrawOrigin } from '../src/utils/getDrawOrigin'
+import { percentToPixelOffset } from '../src/utils/calcAndDrawSvgPath'
 
 const DOM = new JSDOM(
   `<!DOCTYPE html>

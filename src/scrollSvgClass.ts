@@ -1,9 +1,8 @@
 import { defaultOptions } from './index'
 import { OptionalOptions, Options, ScrollSvgClass } from './types'
-import calcPercentToDraw from './utils/calcPercentToDraw'
-import calcAndDrawScrollLine from './utils/calcAndDrawScrollLine'
-import { validateOptions } from './utils/inputValidation'
-import setupSvgPath from './utils/minor/setupSvgPath'
+import { calcPercentToDraw, calcAndDrawScrollLine } from './utils/calcAndDrawSvgPath'
+import { validateOptions } from './utils/setup/inputValidation'
+import { setupSvgPath } from './utils/setup/setupSvgPath'
 
 /**
  * The ScrollSvgClass used to control how and when the svg is drawn

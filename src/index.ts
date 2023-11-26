@@ -1,6 +1,6 @@
 import { scrollSvgClass, scrollSvgEmptyClass } from './scrollSvgClass'
 import { Options, OptionalOptions } from './types'
-import { validateOptions, validSvgPath } from './utils/inputValidation'
+import { validateOptions, validSvgPath } from './utils/setup/inputValidation'
 
 export const defaultOptions: Options = {
   invert: false,
