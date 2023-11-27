@@ -1,6 +1,5 @@
 import { Options } from '../types'
 import { getDrawOrigin } from './getDrawOrigin'
-// import { percentToPixelOffset } from './minor/percentToPixelOffset'
 
 // Gets Calculations and Draws the SVG Path
 export function calcAndDrawScrollLine(svgPath: SVGPathElement, options: Options) {

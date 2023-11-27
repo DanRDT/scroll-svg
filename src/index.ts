@@ -26,7 +26,6 @@ export default function scrollSvg(svgPath: SVGPathElement, userOptions: Optional
 
   // setup options
   const options: Options = { ...defaultOptions, ...userOptions }
-  Object.freeze(options)
 
   // validate options
   if (validateOptions(options, userOptions) > 0) return new scrollSvgEmptyClass()
@@ -48,7 +47,6 @@ export function scrollSvgNullable(svgPath: SVGPathElement, userOptions: Optional
 
   // setup options
   const options: Options = { ...defaultOptions, ...userOptions }
-  Object.freeze(options)
 
   // validate options
   if (validateOptions(options, userOptions) > 0) return null

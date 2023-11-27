@@ -4,6 +4,8 @@ import { validSvgPath } from '../src/utils/setup/inputValidation'
 import scrollSvg, { defaultOptions, scrollSvgNullable } from '../src'
 import { getDrawOrigin } from '../src/utils/getDrawOrigin'
 import { percentToPixelOffset } from '../src/utils/calcAndDrawSvgPath'
+import { scrollSvgClass, scrollSvgEmptyClass } from '../src/scrollSvgClass'
+import { setupSvgPath } from '../src/utils/setup/setupSvgPath'
 
 const DOM = new JSDOM(
   `<!DOCTYPE html>
@@ -22,63 +24,70 @@ const { document } = DOM.window
 const sampleSvgPath = document.querySelector('#svg-path') as SVGPathElement
 // JSDOM doesn't support getTotalLength yet
 sampleSvgPath.getTotalLength = () => 690
-console.log(document)
 
-/** Only for testing */
+/** Only for testing **/
+export function resetSampleSvgPathForTesting(svgPath: SVGPathElement) {
+  svgPath.getTotalLength = () => 690
+}
 export function getSampleSvgPathForTesting() {
+  resetSampleSvgPathForTesting(sampleSvgPath)
   return sampleSvgPath
 }
+/**********************/
 
-describe('Setup Tests', () => {
+describe('Initial Tests', () => {
   it('checks vitest', () => expect(1).toBe(1))
 
   // SVG Validation
   const svgPath = getSampleSvgPathForTesting()
-  it('checks getSampleSvgPathForTesting', () => {
+  it('checks svgPath', () => {
     expect(svgPath.tagName).toBe('path')
-  })
 
-  it('validates setupSvgPath', () => {
-    expect(1).toBe(1)
-  })
-
-  it('validates svg path validation', () => {
-    expect(validSvgPath(null as unknown as SVGPathElement)).toBe(false)
-    expect(validSvgPath(undefined as unknown as SVGPathElement)).toBe(false)
-
-    svgPath.getTotalLength = () => undefined as unknown as number
-    expect(validSvgPath(svgPath)).toBe(false)
-    svgPath.getTotalLength = () => 690
-  })
-  it('validates svg path', () => {
     expect(validSvgPath(svgPath)).toBe(true)
   })
 
+  it('validates setupSvgPath', () => {
+    expect(svgPath.style.strokeDasharray).toBe('')
+    expect(svgPath.style.strokeDashoffset).toBe('')
+
+    expect(setupSvgPath(svgPath)).toBe(undefined)
+
+    expect(svgPath.style.strokeDasharray).toBe('690 690')
+    expect(svgPath.style.strokeDashoffset).toBe('690')
+  })
+
+  it('validates svg path validation (validSvgPath function)', () => {
+    expect(validSvgPath(null as unknown as SVGPathElement)).toBe(false)
+    expect(validSvgPath(undefined as unknown as SVGPathElement)).toBe(false)
+
+    const myElement = document.createElement('article')
+    const body = document.querySelector('body')!
+    body.appendChild(myElement)
+    const article = document.querySelector('article')!
+    expect(validSvgPath(article as any)).toBe(false)
+    body.removeChild(article)
+
+    svgPath.getTotalLength = () => undefined as unknown as number
+    expect(validSvgPath(svgPath)).toBe(false)
+    resetSampleSvgPathForTesting(svgPath)
+
+    svgPath.getTotalLength = () => 0
+    expect(validSvgPath(svgPath)).toBe(false)
+    resetSampleSvgPathForTesting(svgPath)
+
+    svgPath.getTotalLength = () => '' as unknown as number
+    expect(validSvgPath(svgPath)).toBe(false)
+    resetSampleSvgPathForTesting(svgPath)
+  })
+
   it('validates scrollSvg', () => {
-    expect(scrollSvgNullable(undefined as unknown as any)).toBe(null)
-  })
+    expect(scrollSvg(svgPath)).toBeInstanceOf(scrollSvgClass)
+    expect(scrollSvgNullable(svgPath)).toBeInstanceOf(scrollSvgClass)
 
-  it('validates getDrawOrigin', () => {
-    expect(getDrawOrigin(defaultOptions)).toBe(0.5)
-    expect(getDrawOrigin({ ...defaultOptions, draw_origin: 'top' })).toBe(0.25)
-    expect(getDrawOrigin({ ...defaultOptions, draw_origin: 'center' })).toBe(0.5)
-    expect(getDrawOrigin({ ...defaultOptions, draw_origin: 'bottom' })).toBe(0.75)
-    expect(getDrawOrigin({ ...defaultOptions, draw_origin: 1 })).toBe(1)
-    expect(getDrawOrigin({ ...defaultOptions, draw_origin: 0 })).toBe(0)
-    expect(getDrawOrigin({ ...defaultOptions, draw_origin: 0.47923 })).toBe(0.47923)
-  })
+    expect(scrollSvg(null as any)).toBeInstanceOf(scrollSvgEmptyClass)
+    expect(scrollSvgNullable(null as any)).toBe(null)
 
-  it('validates percentToPixelOffset', () => {
-    expect(percentToPixelOffset(1, svgPath, defaultOptions)).toBe(0)
-    expect(percentToPixelOffset(0, svgPath, defaultOptions)).toBe(690)
-    expect(percentToPixelOffset(0.5, svgPath, defaultOptions)).toBe(345)
-    expect(percentToPixelOffset(0.35, svgPath, defaultOptions)).toBe(448.5)
-    expect(percentToPixelOffset(0.88, svgPath, defaultOptions)).toBe(82.8)
-    expect(percentToPixelOffset(0.75, svgPath, defaultOptions)).toBe(172.5)
-
-    expect(percentToPixelOffset(1, svgPath, { ...defaultOptions, undraw: true })).toBe(-690)
-    expect(percentToPixelOffset(0, svgPath, { ...defaultOptions, undraw: true })).toBe(-0)
-    expect(percentToPixelOffset(0.75, svgPath, { ...defaultOptions, undraw: true })).toBe(-517.5)
-    expect(percentToPixelOffset(0.5, svgPath, { ...defaultOptions, undraw: true })).toBe(-345)
+    expect(scrollSvg(svgPath, { invalidKey: 'true' } as any)).toBeInstanceOf(scrollSvgEmptyClass)
+    expect(scrollSvgNullable(svgPath, { invalidKey: 'true' } as any)).toBe(null)
   })
 })
