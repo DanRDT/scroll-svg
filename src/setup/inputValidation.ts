@@ -1,4 +1,4 @@
-import { OptionalOptions, Options } from '../../types'
+import { OptionalOptions, Options } from '../types'
 
 // returns true if valid SVGPathElement
 export function validSvgPath(svgPath: SVGPathElement): Boolean {
