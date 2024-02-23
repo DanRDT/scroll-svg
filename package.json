@@ -7,9 +7,9 @@
   "module": "./dist/index.mjs",
   "unpkg": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "directories": {
-    "doc": "doc"
-  },
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "dev": "vitest",
     "test": "vitest run",
