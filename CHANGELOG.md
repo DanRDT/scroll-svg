@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.4.2
+
+### Patch Changes
+
+- a389a79: Proper support for unpkg.com CDN. (Set .mjs file as default)
+
 ## 1.4.1
 
 ### Patch Changes
