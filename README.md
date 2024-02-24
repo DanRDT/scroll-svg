@@ -12,7 +12,9 @@ Scroll SVG is a library that allows you to effortlessly animate/draw SVG paths o
 
 Setup is as simple as adding an id to the path element of the svg and passing the element to the `scrollSvg` function. The rest of the docs will show you how to use the library, including the `options` parameter.
 
-Check out the interactive [demo](https://pulber.dev/scroll-svg/) or the [example code](https://github.com/DanRDT/scroll-svg/tree/main/example).
+Check out the interactive [demo](https://pulber.dev/scroll-svg) or the [example code](https://github.com/DanRDT/scroll-svg/tree/main/example).
+
+Full Docs at [Github](https://github.com/DanRDT/scroll-svg)
 
 ---
 
@@ -26,40 +28,15 @@ Check out the interactive [demo](https://pulber.dev/scroll-svg/) or the [example
   - [Install the package](#install-the-package)
     - [CDN](#cdn)
   - [Animate the SVG](#animate-the-svg)
-    - [Typescript](#typescript)
-    - [Stop the animation](#stop-the-animation)
-    - [Reactivate the animation](#reactivate-the-animation)
-  - [Recommendations](#recommendations)
 
 - [Options](#options)
 
   - [Using the options](#using-the-options)
-  - [Changing options after initialization](#changing-options-after-initialization)
   - [Invert](#invert)
   - [Draw Origin](#draw-origin)
   - [Offset](#offset)
   - [Speed](#speed)
   - [Undraw](#undraw)
-
-- [Other Methods](#other-methods)
-
-  - [Redraw the svg](#redraw-the-svg)
-  - [Get the percentage of the svg path that has been drawn](#get-the-percentage-of-the-svg-path-that-has-been-drawn)
-  - [Get the current options](#get-the-current-options)
-  - [Get the svg path](#get-the-svg-path)
-  - [Clear the svg path](#clear-the-svg-path)
-  - [Draw the svg path completely](#draw-the-svg-path-completely)
-  - [Delete any listeners for the svg path](#delete-any-listeners-for-the-svg-path)
-
-- [Other](#other)
-
-  - [Nullable Scroll Svg](#nullable-scroll-svg)
-    - [scrollSvg VS scrollSvgNullable](#scrollsvg-vs-scrollsvgnullable)
-  - [Using ScrollSvg with React](#using-scrollsvg-with-react)
-
----
-
----
 
 <br/>
 
@@ -115,41 +92,6 @@ const svgPath = document.querySelector('#scroll-line')
 const svg = scrollSvg(svgPath)
 ```
 
-### Typescript
-
-To use with Typescript, change it from the implicit `Element|null` to `SVGPathElement` type before passing it to `scrollSvg`.
-
-```typescript
-const svgPath = document.querySelector('#scroll-line') as SVGPathElement
-//                                                     ^^^^^^^^^^^^^^^^^
-```
-
-### Stop the animation
-
-To stop the svg path animation, use the .stopAnimating() method on the svg object.
-
-```javascript
-svg.stopAnimating()
-```
-
-### Reactivate the animation
-
-To continue the svg path animation after it was stopped, use the .animate() method on the svg object.
-
-```javascript
-svg.animate()
-```
-
-## Recommendations
-
-Based on the svg you are using, you may need to add some css like this to make it draw smoother.
-
-```css
-#scroll-line {
-  transition: stroke-dashoffset 20ms ease-in-out;
-}
-```
-
 <br/>
 
 ---
@@ -187,18 +129,6 @@ It is not required to use all of the options. You can pass just the options you 
 ```javascript
 const svg = scrollSvg(svgPath, { invert: true, draw_origin: 'center' })
 ```
-
-## Changing options after initialization
-
-To change the options after initialization, use the `.changeOptions()` method on the svg object. This can be useful if you want to change the options after the user has scrolled to a certain point. For example, if you want to change the `undraw` option to `true` after the user has scrolled past the svg and have the svg follow the user as they scroll back up.
-
-```javascript
-svg.changeOptions({ undraw: true })
-```
-
-The `.changeOptions()` method also returns `true` if the options were changed successfully and `false` if they were not. Also, the svg won't be redrawn until the next scroll event. So if you you want the svg to be updated with the new options immediately, you can use the `.redraw()` method.
-
----
 
 ## Invert
 
@@ -259,117 +189,4 @@ Default Value: `false`
 
 <br/>
 
----
-
-<br/>
-
-# Other Methods
-
-## Redraw the svg
-
-To redraw the svg, use the `.redraw()` method on the svg object. This is useful if want the svg to be redrawn before next scroll event.
-
-```javascript
-svg.redraw()
-```
-
-## Get the percentage of the svg path that has been drawn
-
-To get the percentage of the svg path that has been drawn, use the `.getPercentage()` method on the svg object. This returns a number between `0` and `100`. The percentage doesn't take into account the `offset` option, so if the svg is drawn 50% of the way and the `offset` is 100 pixels, the percentage will still be 50%. Also note that the if undraw is `true`, the percentage will still reflect the percentage of the svg path that has been drawn, not the percentage of the svg that has been scrolled past.
-
-```javascript
-const percentage = svg.getPercentageDrawn()
-```
-
-## Get the current options
-
-```javascript
-const currentOptions = svg.getOptions()
-```
-
-## Get the svg path
-
-This returns the svg path element that was passed to `scrollSvg`.
-
-```javascript
-const currentSvgPath = svg.getSvgPath()
-```
-
-## Clear the svg path
-
-This makes the svg path disappear. It will be draw again when the user scrolls, so use `stopAnimating()` if you don't want it to be drawn again.
-
-```javascript
-svg.clear()
-```
-
-## Draw the svg path completely
-
-This draws the svg path completely. It will be drawn back to the scroll position when the user scrolls, so use `stopAnimating()` if you don't want it to be drawn back to the scroll position.
-
-```javascript
-svg.fill()
-```
-
-## Delete any listeners for the svg path
-
-Use the `.remove()` method to delete any listeners for the svg path. This is useful if you want to stop animating the svg path when the component unmounts.
-
-```javascript
-svg.remove()
-```
-
-<br/>
-
----
-
-<br/>
-
----
-
-<br/>
-
-# Other
-
-## Nullable Scroll Svg
-
-`scrollSvgNullable()` can be used if you want to detect if something went wrong in the setup with the options or svg path. It either returns `ScrollSvgClass` used to control how and when the svg is drawn or it returns `null` if the input is invalid.
-
-```javascript
-import { scrollSvgNullable } from 'scroll-svg'
-
-const svgPath = document.querySelector('#scroll-line')
-const svg = scrollSvgNullable(svgPath)
-
-if (!svg) {
-  // do something
-}
-```
-
-<br/>
-
-### scrollSvg VS scrollSvgNullable
-
-`scrollSvg()` returns either `ScrollSvgClass` or `scrollSvgEmptyClass` if the input is invalid.
-
-`scrollSvgNullable()` returns either `ScrollSvgClass` or `null` if the input is invalid.
-
-The `ScrollSvgClass` is used to control how and when the svg is drawn
-
-The `scrollSvgEmptyClass` is identical to the `scrollSvgClass`, so it wont throw errors when `scrollSvgClass` methods are called.
-All functions performed on `scrollSvgEmptyClass` are performed on a dummy SVG path.
-
-<br/>
-
-## Using ScrollSvg with React
-
-To use ScrollSvg with React, you can use the `useEffect` hook to start animating when the component mounts and stop when the component unmounts. Everything else is the same as the examples above.
-
-```javascript
-useEffect(() => {
-  const svgPath = document.querySelector('#scroll-line')
-  const svg = scrollSvg(svgPath)
-
-  return () => svg.remove()
-}, [])
-```
+Full Documention can be found on the [Github](https://github.com/DanRDT/scroll-svg) page.
