@@ -24,7 +24,8 @@ Check out the interactive [demo](https://pulber.dev/scroll-svg/) or the [example
 
   - [HTML](#html)
   - [Install the package](#install-the-package)
-    - [Animate the SVG](#animate-the-svg)
+    - [CDN](#cdn)
+  - [Animate the SVG](#animate-the-svg)
     - [Typescript](#typescript)
     - [Stop the animation](#stop-the-animation)
     - [Reactivate the animation](#reactivate-the-animation)
@@ -86,6 +87,22 @@ pnpm add scroll-svg
 -
 yarn add scroll-svg
 ```
+
+### CDN
+
+To include scroll-svg via a CDN set the script tag to the type of `module`
+
+```html
+<script type="module"></script>
+```
+
+Then import the package from [UNPKG](unpkg.com)
+
+```javascript
+import scrollSvg from 'https://unpkg.com/scroll-svg'
+```
+
+For a specific version add the version number to the end of the url - `@0.0.0`. For more details visit [unpkg.com](unpkg.com).
 
 ## Animate the SVG
 
