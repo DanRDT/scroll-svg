@@ -67,7 +67,7 @@ yarn add scroll-svg
 
 ### CDN
 
-To include scroll-svg via a CDN set the script tag to the type of `module`
+To include scroll-svg via a CDN instead, set the script tag to the type of `module`
 
 ```html
 <script type="module"></script>
@@ -79,7 +79,7 @@ Then import the package from [UNPKG](unpkg.com)
 import scrollSvg from 'https://unpkg.com/scroll-svg'
 ```
 
-For a specific version add the version number to the end of the url - `@0.0.0`. For version `1.4.1` and earlier include `/dist/index.mjs` after the version number. For more details visit [unpkg.com](unpkg.com).
+For a specific version, add the version number to the end of the url - `@0.0.0`. For version `1.4.1` and earlier include `/dist/index.mjs` after the version number. For more details visit [unpkg.com](unpkg.com).
 
 ## Animate the SVG
 
