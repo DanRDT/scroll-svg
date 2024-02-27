@@ -13,10 +13,12 @@
   "scripts": {
     "dev": "vitest",
     "test": "vitest run",
-    "build": "tsup ./src/index.ts --format cjs,esm --dts",
     "lint": "tsc",
-    "ci": "pnpm run lint && pnpm run build && pnpm run test",
-    "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish"
+    "transpile": "tsup ./src/index.ts --format esm --dts --minify",
+    "bundle": "webpack",
+    "build": "pnpm run transpile && pnpm run bundle",
+    "ci": "pnpm run lint && pnpm run test && pnpm run build",
+    "release": "pnpm run ci && changeset publish"
   },
   "repository": {
     "type": "git",
