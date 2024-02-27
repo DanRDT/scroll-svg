@@ -25,8 +25,11 @@ Full Docs at [Github](https://github.com/DanRDT/scroll-svg)
 - [Setup](#setup)
 
   - [HTML](#html)
-  - [Install the package](#install-the-package)
+  - [Install](#install)
+    - [Package manager](#package-manager)
     - [CDN](#cdn)
+      - [ESM](#esm)
+      - [ES5](#es5)
   - [Animate the SVG](#animate-the-svg)
 
 - [Options](#options)
@@ -37,6 +40,8 @@ Full Docs at [Github](https://github.com/DanRDT/scroll-svg)
   - [Offset](#offset)
   - [Speed](#speed)
   - [Undraw](#undraw)
+
+- [Full Docs](https://github.com/DanRDT/scroll-svg)
 
 <br/>
 
