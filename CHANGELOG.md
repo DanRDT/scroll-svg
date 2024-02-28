@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.4.3
+
+### Patch Changes
+
+- 8d9ecde: Support for ES5 Browsers when using a CDN
+
 ## 1.4.2
 
 ### Patch Changes
