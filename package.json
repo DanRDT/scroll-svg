@@ -18,6 +18,7 @@
     "bundle": "webpack",
     "build": "pnpm run transpile && pnpm run bundle",
     "ci": "pnpm run lint && pnpm run test && pnpm run build",
+    "version": "pnpm changeset",
     "release": "pnpm run ci && changeset publish"
   },
   "repository": {
