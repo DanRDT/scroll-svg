@@ -58,7 +58,11 @@ First add an id to the path of the svg you wish to draw on scroll
 </svg>
 ```
 
-## Install the package
+## Install
+
+There are two options for installing and using `scroll-svg`, a package manager or a CDN.
+
+### Package manager
 
 Use the package manager of your choice to download.
 
@@ -72,7 +76,11 @@ yarn add scroll-svg
 
 ### CDN
 
-To include scroll-svg via a CDN instead, set the script tag to the type of `module`
+To include scroll-svg via a CDN there are 2 options, ES modules/ES6 or a global variable for ES5.
+
+#### ESM
+
+Set the script tag to the type of `module`
 
 ```html
 <script type="module"></script>
@@ -81,10 +89,29 @@ To include scroll-svg via a CDN instead, set the script tag to the type of `modu
 Then import the package from [UNPKG](unpkg.com)
 
 ```javascript
-import scrollSvg from 'https://unpkg.com/scroll-svg'
+import scrollSvg from 'https://unpkg.com/scroll-svg@0.0.0'
+//                                  Specify Version ^^^^^
 ```
 
-For a specific version, add the version number to the end of the url - `@0.0.0`. For version `1.4.1` and earlier include `/dist/index.mjs` after the version number. For more details visit [unpkg.com](unpkg.com).
+For version `1.4.1` and earlier include `/dist/index.mjs` after the version number to specify the module version (The module version is default for version `1.4.2` and later). For more details visit [unpkg.com](unpkg.com).
+
+#### ES5
+
+To include scroll-svg as a global variable, a script tag with a link to the package.
+
+```html
+<script src="https://unpkg.com/scroll-svg@0.0.0/dist/index.js"></script>
+<!--                      Specify Version ^^^^^                      -->
+```
+
+Then destructure the global variable `$_scrollSvg` to access the `scroll-svg` functions.
+
+```javascript
+const { default: scrollSvg, scrollSvgNullable } = $_scrollSvg
+//                            ^^^Optional^^^
+```
+
+The ES5 CDN option is only available for version `1.4.3` and later.
 
 ## Animate the SVG
 
