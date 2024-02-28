@@ -1,14 +1,7 @@
 import { scrollSvgClass, scrollSvgEmptyClass } from './scrollSvgClass'
 import { Options, OptionalOptions } from './types'
 import { validateOptions, validSvgPath } from './setup/inputValidation'
-
-export const defaultOptions: Options = {
-  invert: false,
-  draw_origin: 'center',
-  offset: 0,
-  speed: 1,
-  undraw: false,
-}
+import { defaultOptions } from './defaultVariables'
 
 /**
  * Returns either `ScrollSvgClass` used to control how and when the svg is drawn

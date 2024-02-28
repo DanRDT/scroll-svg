@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { defaultOptions } from '../src'
 import { getDrawOrigin } from '../src/utils/getDrawOrigin'
 import { percentToPixelOffset } from '../src/utils/calcAndDrawSvgPath'
 import { scrollSvgEmptyClass } from '../src/scrollSvgClass'
 import { getSampleSvgPathForTesting } from './index.test'
+import { defaultOptions } from '../src/defaultVariables'
 
 describe('Setup Tests', () => {
   const svgPath = getSampleSvgPathForTesting()
