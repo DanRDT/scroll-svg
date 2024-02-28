@@ -1,4 +1,4 @@
-// Example Javascript Code
+// Example Javascript Code using ES modules
 
 import scrollSvg from '../dist/index.mjs'
 
