@@ -1,6 +1,6 @@
 import { OptionalOptions, Options, ScrollSvgClass } from './types'
 import { calcPercentToDraw, calcAndDrawScrollLine } from './utils/calcAndDrawSvgPath'
-import { validateOptions } from './setup/inputValidation'
+import { validSvgPath, validateOptions } from './setup/inputValidation'
 import { setupSvgPath } from './setup/setupSvgPath'
 import { defaultOptions } from './defaultVariables'
 
@@ -66,7 +66,13 @@ export class scrollSvgClass implements ScrollSvgClass {
     return true
   }
   changeSvgPath(newSvgPath: SVGPathElement) {
-    return true
+    if (validSvgPath(newSvgPath)) {
+      this.svgPath = newSvgPath
+      this.prevBoundingRectTop = newSvgPath.getBoundingClientRect().top
+      setupSvgPath(newSvgPath)
+
+      return true
+    } else return false
   }
 
   getOptions() {
@@ -129,10 +135,10 @@ export class scrollSvgEmptyClass implements ScrollSvgClass {
   animate() {}
   stopAnimating() {}
   redraw() {}
-  changeOptions() {
+  changeOptions(userOptions: OptionalOptions) {
     return false
   }
-  changeSvgPath() {
+  changeSvgPath(newSvgPath: SVGPathElement) {
     return false
   }
   getOptions() {

@@ -96,7 +96,7 @@ export interface ScrollSvgClass {
    * To change the svg path after initialization, use the `.changeSvgPath()` method on the scrollSvg object. This can be useful if you want to change the svg path being drawn after the user has scrolled to a certain point.
    *
    * The `.changeSvgPath()` method also returns `true` if the svg path was changed successfully and `false` if it was not. Also, the svg won't be redrawn until the next scroll event. So if you you want the svg to be updated with the new options immediately, you can use the `.redraw()` method.
-   * @param userOptions
+   * @param newSvgPath
    */
   changeSvgPath(newSvgPath: SVGPathElement): boolean
   /**
