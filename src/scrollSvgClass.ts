@@ -65,6 +65,9 @@ export class scrollSvgClass implements ScrollSvgClass {
     this.options = options
     return true
   }
+  changeSvgPath(newSvgPath: SVGPathElement) {
+    return true
+  }
 
   getOptions() {
     return this.options
@@ -127,6 +130,9 @@ export class scrollSvgEmptyClass implements ScrollSvgClass {
   stopAnimating() {}
   redraw() {}
   changeOptions() {
+    return false
+  }
+  changeSvgPath() {
     return false
   }
   getOptions() {

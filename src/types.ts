@@ -74,24 +74,31 @@ export interface ScrollSvgClass {
   // observer: IntersectionObserver
 
   /**
-   * To continue the svg path animation after it was stopped, use the .animate() method on the svg object.
+   * To continue the svg path animation after it was stopped, use the .animate() method on the scrollSvg object.
    */
   animate(): void
   /**
-   * To stop the svg path animation, use the .stopAnimating() method on the svg object.
+   * To stop the svg path animation, use the .stopAnimating() method on the scrollSvg object.
    */
   stopAnimating(): void
   /**
-   * To redraw the svg, use the `.redraw()` method on the svg object. This is useful if want the svg to be redrawn before next scroll event.
+   * To redraw the svg, use the `.redraw()` method on the scrollSvg object. This is useful if want the svg to be redrawn before next scroll event.
    */
   redraw(): void
   /**
-   * To change the options after initialization, use the `.changeOptions()` method on the svg object. This can be useful if you want to change the options after the user has scrolled to a certain point. For example, if you want to change the `undraw` option to `true` after the user has scrolled past the svg and have the svg follow the user as they scroll back up.
+   * To change the options after initialization, use the `.changeOptions()` method on the scrollSvg object. This can be useful if you want to change the options after the user has scrolled to a certain point. For example, if you want to change the `undraw` option to `true` after the user has scrolled past the svg and have the svg follow the user as they scroll back up.
    *
    * The `.changeOptions()` method also returns `true` if the options were changed successfully and `false` if they were not. Also, the svg won't be redrawn until the next scroll event. So if you you want the svg to be updated with the new options immediately, you can use the `.redraw()` method.
    * @param userOptions
    */
   changeOptions(userOptions: OptionalOptions): boolean
+  /**
+   * To change the svg path after initialization, use the `.changeSvgPath()` method on the scrollSvg object. This can be useful if you want to change the svg path being drawn after the user has scrolled to a certain point.
+   *
+   * The `.changeSvgPath()` method also returns `true` if the svg path was changed successfully and `false` if it was not. Also, the svg won't be redrawn until the next scroll event. So if you you want the svg to be updated with the new options immediately, you can use the `.redraw()` method.
+   * @param userOptions
+   */
+  changeSvgPath(newSvgPath: SVGPathElement): boolean
   /**
    * Get the current options
    */
@@ -101,7 +108,7 @@ export interface ScrollSvgClass {
    */
   getSvgPath(): SVGPathElement
   /**
-   * To get the percentage of the svg path that has been drawn, use the `.getPercentage()` method on the svg object. This returns a number between `0` and `100`. The percentage doesn't take into account the `offset` option, so if the svg is drawn 50% of the way and the `offset` is 100 pixels, the percentage will still be 50%. Also note that the if undraw is `true`, the percentage will still reflect the percentage of the svg path that has been drawn, not the percentage of the svg that has been scrolled past.
+   * To get the percentage of the svg path that has been drawn, use the `.getPercentage()` method on the scrollSvg object. This returns a number between `0` and `100`. The percentage doesn't take into account the `offset` option, so if the svg is drawn 50% of the way and the `offset` is 100 pixels, the percentage will still be 50%. Also note that the if undraw is `true`, the percentage will still reflect the percentage of the svg path that has been drawn, not the percentage of the svg that has been scrolled past.
    */
   getPercentageDrawn(): number
   /**
