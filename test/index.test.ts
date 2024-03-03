@@ -28,6 +28,8 @@ sampleSvgPath.getTotalLength = () => 690
 /** Only for testing **/
 export function resetSampleSvgPathForTesting(svgPath: SVGPathElement) {
   svgPath.getTotalLength = () => 690
+  svgPath.style.strokeDasharray = ''
+  svgPath.style.strokeDashoffset = ''
 }
 export function getSampleSvgPathForTesting() {
   resetSampleSvgPathForTesting(sampleSvgPath)
@@ -47,6 +49,7 @@ describe('Initial Tests', () => {
   })
 
   it('validates setupSvgPath', () => {
+    resetSampleSvgPathForTesting(svgPath)
     expect(svgPath.style.strokeDasharray).toBe('')
     expect(svgPath.style.strokeDashoffset).toBe('')
 
