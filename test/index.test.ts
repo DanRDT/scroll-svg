@@ -15,23 +15,24 @@ const DOM = new JSDOM(
     <svg id="svg" width="1080" height="1920" viewBox="0 0 9 699" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path id="svg-path" d="M 4 4 V 694.5" stroke="black" stroke-width="4" />
     </svg>
+    <svg id="svg-2" viewBox="0 0 343 637" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="svg-path-2" d="M178.458 0.5V142H339V292.5H4.5V462H178.458V636.5" stroke="black" stroke-width="8" />
+    </svg>
   </body>
 </html>`,
   { pretendToBeVisual: true }
 )
 const { document } = DOM.window
 
-const sampleSvgPath = document.querySelector('#svg-path') as SVGPathElement
-// JSDOM doesn't support getTotalLength yet
-sampleSvgPath.getTotalLength = () => 690
-
 /** Only for testing **/
 export function resetSampleSvgPathForTesting(svgPath: SVGPathElement) {
+  // JSDOM doesn't support getTotalLength yet
   svgPath.getTotalLength = () => 690
   svgPath.style.strokeDasharray = ''
   svgPath.style.strokeDashoffset = ''
 }
-export function getSampleSvgPathForTesting() {
+export function getSampleSvgPathForTesting(querySelectorInput: string = '#svg-path') {
+  const sampleSvgPath = document.querySelector(querySelectorInput) as SVGPathElement
   resetSampleSvgPathForTesting(sampleSvgPath)
   return sampleSvgPath
 }
