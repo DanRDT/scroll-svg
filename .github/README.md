@@ -50,6 +50,7 @@ Check out the interactive [demo](https://pulber.dev/scroll-svg/) or the [example
   - [Get the percentage of the svg path that has been drawn](#get-the-percentage-of-the-svg-path-that-has-been-drawn)
   - [Get the current options](#get-the-current-options)
   - [Get the svg path](#get-the-svg-path)
+  - [Changing svg path after initialization](#changing-svg-path-after-initialization)
   - [Clear the svg path](#clear-the-svg-path)
   - [Draw the svg path completely](#draw-the-svg-path-completely)
   - [Delete any listeners for the svg path](#delete-any-listeners-for-the-svg-path)
@@ -328,6 +329,16 @@ This returns the svg path element that was passed to `scrollSvg`.
 ```javascript
 const currentSvgPath = svg.getSvgPath()
 ```
+
+## Changing svg path after initialization
+
+To change the svg path after initialization, use the `.changeSvgPath()` method on the svg object. This can be useful if you want to change the svg path being draw after the user does something.
+
+```javascript
+svg.changeSvgPath(newSvgPath)
+```
+
+The `.changeSvgPath()` method also returns `true` if the svg was changed successfully and `false` if it was not. Also, the svg won't be redrawn until the next scroll event. So if you you want the svg to be redraw immediately, you can use the `.redraw()` method.
 
 ## Clear the svg path
 
