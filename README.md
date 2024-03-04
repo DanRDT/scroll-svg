@@ -97,12 +97,16 @@ For version `1.4.1` and earlier include `/dist/index.mjs` after the version numb
 
 #### ES5
 
-To include scroll-svg as a global variable, a script tag with a link to the package.
+To include scroll-svg as a global variable, add a script tag with a link to the package. Be sure to specify the version and include `/dist/index.js` after the version number to receive the ES5 version instead ESM version.
 
 ```html
-<script src="https://unpkg.com/scroll-svg@0.0.0/dist/index.js"></script>
-<!--                      Specify Version ^^^^^                      -->
+<script
+  src="https://www.unpkg.com/scroll-svg@1.4.3/dist/index.js"
+  integrity="sha384-LRr93rGItc2/gUgXJu434UFUQlJQY1atK+qpkfMvd3nA6D97e3tculDDFsoGyuH8"
+  crossorigin="anonymous"></script>
 ```
+
+To generate an integrity hash, use [srihash.org](https://www.srihash.org/).
 
 Then destructure the global variable `$_scrollSvg` to access the `scroll-svg` functions.
 
