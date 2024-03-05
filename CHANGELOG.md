@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.5.0
+
+### Minor Changes
+
+- 4e972db: Add changeSvgPath method
+
 ## 1.4.3
 
 ### Patch Changes
