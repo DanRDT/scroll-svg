@@ -1,4 +1,4 @@
-import { OptionalOptions, Options, ScrollSvgInterface } from './types'
+import { Options, OptionsComplete, ScrollSvgInterface } from './types'
 import { calcPercentToDraw, calcAndDrawScrollLine } from './utils/calcAndDrawSvgPath'
 import { validSvgPath, validateOptions } from './setup/inputValidation'
 import { setupSvgPath } from './setup/setupSvgPath'
@@ -9,14 +9,14 @@ import { defaultOptions } from './defaultVariables'
  */
 export class ScrollSvgClass implements ScrollSvgInterface {
   svgPath: SVGPathElement
-  options: Options
+  options: OptionsComplete
   animationFrame: number = 0
   prevBoundingRectTop: number
   isActive: boolean = true
   isObservable: boolean = true
   // observer: IntersectionObserver
 
-  constructor(svgPath: SVGPathElement, options: Options) {
+  constructor(svgPath: SVGPathElement, options: OptionsComplete) {
     // initialize class variables
     this.svgPath = svgPath
     this.options = options
@@ -58,7 +58,7 @@ export class ScrollSvgClass implements ScrollSvgInterface {
   redraw() {
     calcAndDrawScrollLine(this.svgPath, this.options)
   }
-  changeOptions(userOptions: OptionalOptions) {
+  changeOptions(userOptions: Options) {
     const options = { ...this.options, ...userOptions }
 
     if (validateOptions(options, userOptions) > 0) return false
@@ -120,7 +120,7 @@ const animationFrameFunc = (scrollSvgObj: scrollSvgClass) => {
  */
 export class ScrollSvgEmptyClass implements ScrollSvgInterface {
   svgPath: SVGPathElement
-  options: Options = defaultOptions
+  options: OptionsComplete = defaultOptions
   animationFrame: number = 0
   prevBoundingRectTop: number = 0
   isActive: boolean = true
@@ -135,7 +135,7 @@ export class ScrollSvgEmptyClass implements ScrollSvgInterface {
   animate() {}
   stopAnimating() {}
   redraw() {}
-  changeOptions(userOptions: OptionalOptions) {
+  changeOptions(userOptions: Options) {
     return false
   }
   changeSvgPath(newSvgPath: SVGPathElement) {

@@ -1,4 +1,4 @@
-import { OptionalOptions, Options } from '../types'
+import { Options, OptionsComplete } from '../types'
 
 // returns true if valid SVGPathElement
 export function validSvgPath(svgPath: SVGPathElement): Boolean {
@@ -20,7 +20,7 @@ export function validSvgPath(svgPath: SVGPathElement): Boolean {
  * @param options default options merged with user options
  * @param userEnteredOptions used to display user option errors
  * @returns the number of errors found in the provided options */
-export function validateOptions(options: Options, userEnteredOptions: OptionalOptions): number {
+export function validateOptions(options: OptionsComplete, userEnteredOptions: Options): number {
   let errors = 0
   try {
     // check keys

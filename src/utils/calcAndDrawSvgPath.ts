@@ -1,8 +1,8 @@
-import { Options } from '../types'
+import { OptionsComplete } from '../types'
 import { getDrawOrigin } from './getDrawOrigin'
 
 // Gets Calculations and Draws the SVG Path
-export function calcAndDrawScrollLine(svgPath: SVGPathElement, options: Options) {
+export function calcAndDrawScrollLine(svgPath: SVGPathElement, options: OptionsComplete) {
   const percentToDraw = calcPercentToDraw(svgPath, options)
   let pixelOffset = percentToPixelOffset(percentToDraw, svgPath, options)
 
@@ -13,7 +13,7 @@ export function calcAndDrawScrollLine(svgPath: SVGPathElement, options: Options)
 }
 
 // uses svg bounding box to calculate the percent of the svg path that should be drawn
-export function calcPercentToDraw(svgPath: SVGPathElement, options: Options): number {
+export function calcPercentToDraw(svgPath: SVGPathElement, options: OptionsComplete): number {
   const height = window.innerHeight
 
   const svgTop = svgPath.getBoundingClientRect().top - options.offset
@@ -36,7 +36,7 @@ export function calcPercentToDraw(svgPath: SVGPathElement, options: Options): nu
 }
 
 // gets the percent as a decimal that the svg should be drawn and converts it to a pixel offset
-export function percentToPixelOffset(percent: number, svgPath: SVGPathElement, options: Options): number {
+export function percentToPixelOffset(percent: number, svgPath: SVGPathElement, options: OptionsComplete): number {
   //
   // flips the percent from something like 0.3 to 0.7 and vise versa
   const adjustedPercent = 1 - percent

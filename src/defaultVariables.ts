@@ -1,6 +1,6 @@
-import { Options } from './types'
+import { OptionsComplete } from './types'
 
-export const defaultOptions: Options = {
+export const defaultOptions: OptionsComplete = {
   invert: false,
   draw_origin: 'center',
   offset: 0,

@@ -1,4 +1,4 @@
-export type OptionalOptions = {
+export type Options = {
   /**
    * The `invert` option inverts which direction the svg draws from. Sometimes an svg draws backwards by default and the `invert` option is required to correct it.
    *
@@ -41,7 +41,7 @@ export type OptionalOptions = {
   undraw?: boolean
 }
 
-export type Options = Required<OptionalOptions>
+export type OptionsComplete = Required<Options>
 
 export interface ScrollSvgInterface {
   /**
@@ -51,7 +51,7 @@ export interface ScrollSvgInterface {
   /**
    * The current options
    */
-  options: Options
+  options: OptionsComplete
   /**
    * Used in the animationFrame function
    */
@@ -91,7 +91,7 @@ export interface ScrollSvgInterface {
    * The `.changeOptions()` method also returns `true` if the options were changed successfully and `false` if they were not. Also, the svg won't be redrawn until the next scroll event. So if you you want the svg to be updated with the new options immediately, you can use the `.redraw()` method.
    * @param userOptions
    */
-  changeOptions(userOptions: OptionalOptions): boolean
+  changeOptions(userOptions: Options): boolean
   /**
    * To change the svg path after initialization, use the `.changeSvgPath()` method on the scrollSvg object. This can be useful if you want to change the svg path being drawn after the user has scrolled to a certain point.
    *
@@ -102,7 +102,7 @@ export interface ScrollSvgInterface {
   /**
    * Get the current options
    */
-  getOptions(): Options
+  getOptions(): OptionsComplete
   /**
    * This returns the svg path element that was passed to `scrollSVG`.
    */

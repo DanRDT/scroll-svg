@@ -1,8 +1,8 @@
-import { Options } from '../types'
+import { OptionsComplete } from '../types'
 
 // return draw origin as a decimal between 0 and 1
-// *validation for draw_origin is done in validateOptions
-export function getDrawOrigin(options: Options): number {
+// value validation for draw_origin is done in validateOptions function
+export function getDrawOrigin(options: OptionsComplete): number {
   let drawOrigin: number
   if (options.draw_origin === 'top') {
     drawOrigin = 0.25
