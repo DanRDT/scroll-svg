@@ -1,13 +1,13 @@
-import { scrollSvgClass, scrollSvgEmptyClass } from './scrollSvgClass'
+import { ScrollSvgClass, ScrollSvgEmptyClass } from './scrollSvgClass'
 import { Options, OptionalOptions } from './types'
 import { validateOptions, validSvgPath } from './setup/inputValidation'
 import { defaultOptions } from './defaultVariables'
 
 /**
  * Returns either `ScrollSvgClass` used to control how and when the svg is drawn
- * or returns the `scrollSvgEmptyClass` if the input is invalid.
- * The `scrollSvgEmptyClass` is identical to the `scrollSvgClass`, so it wont throw errors when `scrollSvgClass` methods are called.
- * All functions performed on `scrollSvgEmptyClass` are performed on a dummy SVG path.
+ * or returns the `ScrollSvgEmptyClass` if the input is invalid.
+ * The `ScrollSvgEmptyClass` is identical to the `ScrollSvgClass`, so it wont throw errors when `ScrollSvgClass` methods are called.
+ * All functions performed on `ScrollSvgEmptyClass` are performed on a dummy SVG path.
  *
  * @param {SVGPathElement} svgPath The SVG Path which you wish to animate on scroll
  * @param {OptionalOptions} userOptions Options to customize how and when the SVG is drawn
@@ -15,15 +15,15 @@ import { defaultOptions } from './defaultVariables'
 export default function scrollSvg(svgPath: SVGPathElement, userOptions: OptionalOptions = defaultOptions) {
   // validate svgPath
   // if invalid returns true, the function returns an empty replica class of scrollSvgClass
-  if (!validSvgPath(svgPath)) return new scrollSvgEmptyClass()
+  if (!validSvgPath(svgPath)) return new ScrollSvgEmptyClass()
 
   // setup options
   const options: Options = { ...defaultOptions, ...userOptions }
 
   // validate options
-  if (validateOptions(options, userOptions) > 0) return new scrollSvgEmptyClass()
+  if (validateOptions(options, userOptions) > 0) return new ScrollSvgEmptyClass()
 
-  return new scrollSvgClass(svgPath, options)
+  return new ScrollSvgClass(svgPath, options)
 }
 
 /**
@@ -44,5 +44,5 @@ export function scrollSvgNullable(svgPath: SVGPathElement, userOptions: Optional
   // validate options
   if (validateOptions(options, userOptions) > 0) return null
 
-  return new scrollSvgClass(svgPath, options)
+  return new ScrollSvgClass(svgPath, options)
 }

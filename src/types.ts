@@ -43,7 +43,7 @@ export type OptionalOptions = {
 
 export type Options = Required<OptionalOptions>
 
-export interface ScrollSvgClass {
+export interface ScrollSvgInterface {
   /**
    * The SVG Path being animated
    */

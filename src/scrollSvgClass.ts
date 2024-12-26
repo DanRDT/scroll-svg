@@ -1,4 +1,4 @@
-import { OptionalOptions, Options, ScrollSvgClass } from './types'
+import { OptionalOptions, Options, ScrollSvgInterface } from './types'
 import { calcPercentToDraw, calcAndDrawScrollLine } from './utils/calcAndDrawSvgPath'
 import { validSvgPath, validateOptions } from './setup/inputValidation'
 import { setupSvgPath } from './setup/setupSvgPath'
@@ -7,7 +7,7 @@ import { defaultOptions } from './defaultVariables'
 /**
  * The ScrollSvgClass used to control how and when the svg is drawn
  */
-export class scrollSvgClass implements ScrollSvgClass {
+export class ScrollSvgClass implements ScrollSvgInterface {
   svgPath: SVGPathElement
   options: Options
   animationFrame: number = 0
@@ -118,7 +118,7 @@ const animationFrameFunc = (scrollSvgObj: scrollSvgClass) => {
 /**
  * An empty replica class of scrollSvgClass that is returned when the initial input (the SVG path or options) is invalid
  */
-export class scrollSvgEmptyClass implements ScrollSvgClass {
+export class ScrollSvgEmptyClass implements ScrollSvgInterface {
   svgPath: SVGPathElement
   options: Options = defaultOptions
   animationFrame: number = 0

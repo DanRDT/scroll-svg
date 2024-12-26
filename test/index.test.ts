@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { JSDOM } from 'jsdom'
 import { validSvgPath } from '../src/setup/inputValidation'
 import scrollSvg, { scrollSvgNullable } from '../src'
-import { scrollSvgClass, scrollSvgEmptyClass } from '../src/scrollSvgClass'
+import { ScrollSvgClass, ScrollSvgEmptyClass } from '../src/scrollSvgClass'
 import { setupSvgPath } from '../src/setup/setupSvgPath'
 
 const DOM = new JSDOM(
@@ -83,13 +83,13 @@ describe('Initial Tests', () => {
   })
 
   it('validates scrollSvg', () => {
-    expect(scrollSvg(svgPath)).toBeInstanceOf(scrollSvgClass)
-    expect(scrollSvgNullable(svgPath)).toBeInstanceOf(scrollSvgClass)
+    expect(scrollSvg(svgPath)).toBeInstanceOf(ScrollSvgClass)
+    expect(scrollSvgNullable(svgPath)).toBeInstanceOf(ScrollSvgClass)
 
-    expect(scrollSvg(null as any)).toBeInstanceOf(scrollSvgEmptyClass)
+    expect(scrollSvg(null as any)).toBeInstanceOf(ScrollSvgEmptyClass)
     expect(scrollSvgNullable(null as any)).toBe(null)
 
-    expect(scrollSvg(svgPath, { invalidKey: 'true' } as any)).toBeInstanceOf(scrollSvgEmptyClass)
+    expect(scrollSvg(svgPath, { invalidKey: 'true' } as any)).toBeInstanceOf(ScrollSvgEmptyClass)
     expect(scrollSvgNullable(svgPath, { invalidKey: 'true' } as any)).toBe(null)
   })
 })
