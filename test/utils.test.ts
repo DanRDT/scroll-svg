@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { getDrawOrigin } from '../src/utils/getDrawOrigin'
 import { percentToPixelOffset } from '../src/utils/calcAndDrawSvgPath'
-import { scrollSvgEmptyClass } from '../src/scrollSvgClass'
 import { getSampleSvgPathForTesting } from './index.test'
 import { defaultOptions } from '../src/defaultVariables'
 
@@ -31,21 +30,4 @@ describe('Setup Tests', () => {
     expect(percentToPixelOffset(0.75, svgPath, { ...defaultOptions, undraw: true })).toBe(-517.5)
     expect(percentToPixelOffset(0.5, svgPath, { ...defaultOptions, undraw: true })).toBe(-345)
   })
-
-  it('validates ', () => {
-    expect(1).toBe(1)
-  })
-
-  // it('validates ', () => {
-  //   expect(1).toBe(1)
-  // })
-  // it('validates ', () => {
-  //   expect(1).toBe(1)
-  // })
-  // it('validates ', () => {
-  //   expect(1).toBe(1)
-  // })
-  // it('validates ', () => {
-  //   expect(1).toBe(1)
-  // })
 })

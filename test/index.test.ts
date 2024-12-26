@@ -2,8 +2,6 @@ import { describe, expect, it } from 'vitest'
 import { JSDOM } from 'jsdom'
 import { validSvgPath } from '../src/setup/inputValidation'
 import scrollSvg, { scrollSvgNullable } from '../src'
-import { getDrawOrigin } from '../src/utils/getDrawOrigin'
-import { percentToPixelOffset } from '../src/utils/calcAndDrawSvgPath'
 import { scrollSvgClass, scrollSvgEmptyClass } from '../src/scrollSvgClass'
 import { setupSvgPath } from '../src/setup/setupSvgPath'
 
