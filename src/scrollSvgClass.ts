@@ -32,7 +32,7 @@ export class ScrollSvgClass implements ScrollSvgInterface {
     //     items.map(item => {
     //       if (item.isIntersecting) {
     //         this.isObservable = true
-    animationFrameFunc(this)
+    runAnimationFrame(this)
     //       } else {
     //         this.isObservable = false
     //       }
@@ -48,7 +48,7 @@ export class ScrollSvgClass implements ScrollSvgInterface {
   animate() {
     if (this.isActive) return
     this.isActive = true
-    animationFrameFunc(this)
+    runAnimationFrame(this)
   }
   stopAnimating() {
     this.isActive = false
@@ -99,7 +99,11 @@ export class ScrollSvgClass implements ScrollSvgInterface {
   }
 }
 
-const animationFrameFunc = (scrollSvgObj: scrollSvgClass) => {
+/**
+ * Draw svg each animation frame if it is active.
+ * @param scrollSvgObj instance of ScrollSvgClass
+ */
+const runAnimationFrame = (scrollSvgObj: ScrollSvgClass) => {
   // check if user has scrolled if so, recalculate and redraw the scroll line
   if (scrollSvgObj.prevBoundingRectTop !== scrollSvgObj.svgPath.getBoundingClientRect().top) {
     calcAndDrawScrollLine(scrollSvgObj.svgPath, scrollSvgObj.options)
@@ -108,7 +112,7 @@ const animationFrameFunc = (scrollSvgObj: scrollSvgClass) => {
   // check if user still wishes to continue animating and if its visible
   if (scrollSvgObj.isActive && scrollSvgObj.isObservable) {
     scrollSvgObj.animationFrame = requestAnimationFrame(function () {
-      animationFrameFunc(scrollSvgObj)
+      runAnimationFrame(scrollSvgObj)
     })
   } else {
     cancelAnimationFrame(scrollSvgObj.animationFrame)
