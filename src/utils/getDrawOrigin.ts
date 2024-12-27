@@ -1,4 +1,4 @@
-import { OptionsComplete } from '../types'
+import type { OptionsComplete } from '../types'
 
 // return draw origin as a decimal between 0 and 1
 // value validation for draw_origin is done in validateOptions function

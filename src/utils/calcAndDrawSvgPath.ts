@@ -1,4 +1,4 @@
-import { OptionsComplete } from '../types'
+import type { OptionsComplete } from '../types'
 import { getDrawOrigin } from './getDrawOrigin'
 
 // Gets Calculations and Draws the SVG Path

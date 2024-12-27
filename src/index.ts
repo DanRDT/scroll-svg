@@ -1,5 +1,5 @@
 import { ScrollSvgClass, ScrollSvgEmptyClass } from './scrollSvgClass'
-import { OptionsComplete, Options } from './types'
+import type { Options, OptionsComplete, ScrollSvgInterface } from './types'
 import { validateOptions, validSvgPath } from './setup/inputValidation'
 import { defaultOptions } from './defaultVariables'
 
@@ -46,3 +46,5 @@ export function scrollSvgNullable(svgPath: SVGPathElement, userOptions: Options 
 
   return new ScrollSvgClass(svgPath, options)
 }
+
+export type { Options, OptionsComplete, ScrollSvgInterface }

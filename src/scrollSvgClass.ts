@@ -1,4 +1,4 @@
-import { Options, OptionsComplete, ScrollSvgInterface } from './types'
+import type { Options, OptionsComplete, ScrollSvgInterface } from './types'
 import { calcPercentToDraw, calcAndDrawScrollLine } from './utils/calcAndDrawSvgPath'
 import { validSvgPath, validateOptions } from './setup/inputValidation'
 import { setupSvgPath } from './setup/setupSvgPath'

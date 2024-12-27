@@ -1,4 +1,4 @@
-import { OptionsComplete } from './types'
+import type { OptionsComplete } from './types'
 
 export const defaultOptions: OptionsComplete = {
   invert: false,
