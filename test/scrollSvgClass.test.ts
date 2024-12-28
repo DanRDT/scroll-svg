@@ -43,12 +43,12 @@ describe('Check scrollSvgClass', () => {
 
     expect(svgClass.getOptions()).toMatchObject(defaultOptions)
     expect(svgClass.getSvgPath().tagName).toBe('path')
-    // expect(svgClass.getPercentageDrawn()).toBe(100)
+    expect(svgClass.getPercentageDrawn()).toBe(100)
 
     svgClass.fill()
     expect(svgClass.svgPath.style.strokeDashoffset).toBe('0')
-    // svgClass.clear()
-    // svgClass.redraw()
+    svgClass.clear()
+    svgClass.redraw()
 
     svgClass.remove()
     expect(svgClass.isActive).toBe(false)
