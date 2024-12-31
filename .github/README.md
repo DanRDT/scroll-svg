@@ -108,14 +108,14 @@ Set the script tag to the type of `module`
 <script type="module"></script>
 ```
 
-Then import the package from [UNPKG](unpkg.com)
+Then import the package from [UNPKG](https://unpkg.com)
 
 ```javascript
 import scrollSvg from 'https://unpkg.com/scroll-svg@0.0.0'
 //                                  Specify Version ^^^^^
 ```
 
-For version `1.4.1` and earlier include `/dist/index.mjs` after the version number to specify the module version (The module version is default for version `1.4.2` and later). For more details visit [unpkg.com](unpkg.com).
+For version `1.4.1` and earlier include `/dist/index.mjs` after the version number to specify the module version (The module version is default for version `1.4.2` and later). For more details visit [unpkg.com](https://unpkg.com).
 
 #### ES5
 
@@ -123,8 +123,8 @@ To include scroll-svg as a global variable, add a script tag with a link to the 
 
 ```html
 <script
-  src="https://www.unpkg.com/scroll-svg@1.4.3/dist/index.js"
-  integrity="sha384-LRr93rGItc2/gUgXJu434UFUQlJQY1atK+qpkfMvd3nA6D97e3tculDDFsoGyuH8"
+  src="https://www.unpkg.com/scroll-svg@1.5.0/dist/index.js"
+  integrity="sha384-MoRMdbhaxrzw4H/Ah/im0x6B+lyNcSP0EAVvnsIRFxY9BSv3rthsmOeLZMlkVv42"
   crossorigin="anonymous"></script>
 ```
 
