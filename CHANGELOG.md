@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.5.1
+
+### Patch Changes
+
+- ac710ed: Update and improve exported Typescript types
+
 ## 1.5.0
 
 ### Minor Changes
