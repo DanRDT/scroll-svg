@@ -41,14 +41,14 @@
   },
   "homepage": "https://github.com/DanRDT/scroll-svg#readme",
   "devDependencies": {
-    "@changesets/cli": "^2.27.11",
-    "@swc/core": "^1.10.1",
-    "@types/jsdom": "^21.1.7",
-    "jsdom": "^25.0.1",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8",
-    "webpack": "^5.97.1",
+    "@changesets/cli": "^2.29.8",
+    "@swc/core": "^1.15.8",
+    "@types/jsdom": "^27.0.0",
+    "jsdom": "^27.4.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.17",
+    "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1"
   },
   "publishConfig": {
