@@ -3,6 +3,7 @@
   "version": "1.5.1",
   "description": "A library to make animating svgs on scroll easier.",
   "private": false,
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "unpkg": "./dist/index.mjs",
