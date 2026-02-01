@@ -1,5 +1,11 @@
 # scroll-svg
 
+## 1.5.2
+
+### Patch Changes
+
+- 12bf614: Changed package publishing workflow to use OIDC
+
 ## 1.5.1
 
 ### Patch Changes
