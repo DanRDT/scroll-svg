@@ -4,10 +4,19 @@
   "description": "A library to make animating svgs on scroll easier.",
   "private": false,
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "unpkg": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
+  "browser": "./dist/index.global.min.js",
+  "unpkg": "./dist/index.global.min.js",
+  "jsdelivr": "./dist/index.global.min.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "files": [
     "/dist"
   ],
@@ -15,9 +24,7 @@
     "dev": "vitest",
     "test": "vitest run",
     "lint": "tsc",
-    "transpile": "tsup ./src/index.ts --format esm --dts --minify",
-    "bundle": "webpack",
-    "build": "pnpm run transpile && pnpm run bundle",
+    "build": "tsup",
     "ci": "pnpm run lint && pnpm run test && pnpm run build",
     "version": "pnpm changeset",
     "release": "pnpm run ci && changeset publish"
@@ -48,9 +55,7 @@
     "jsdom": "^27.4.0",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.17",
-    "webpack": "^5.104.1",
-    "webpack-cli": "^6.0.1"
+    "vitest": "^4.0.17"
   },
   "publishConfig": {
     "access": "public"
