@@ -1,6 +1,5 @@
 // Example Javascript Code using ES modules
-
-import scrollSvg from '../dist/index.mjs'
+import scrollSvg from '/dist/index.min.mjs'
 
 const svgPath1 = document.querySelector('#scroll-line-1')
 const svgPath2 = document.querySelector('#scroll-line-2')

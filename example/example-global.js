@@ -1,6 +1,5 @@
 // Example Javascript Code for ES5 browsers using a global variable
-
-const { default: scrollSvg, scrollSvgNullable } = $_scrollSvg
+const { default: scrollSvg, scrollSvgNullable } = ScrollSvg
 //                            ^^^Optional^^^
 
 const svgPath1 = document.querySelector('#scroll-line-1')

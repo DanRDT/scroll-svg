@@ -1,5 +1,4 @@
 // Example Typescript Code
-
 import scrollSvg from '../src/index'
 
 const svgPath1 = document.querySelector('#scroll-line-1') as SVGPathElement

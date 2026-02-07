@@ -1,5 +1,5 @@
 <!-- Sample HTML -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,32 +8,21 @@
     <title>Scroll Svg Testing</title>
     <link rel="stylesheet" type="text/css" href="/example/example.css" />
 
-    <!-- ES6 -->
-    <script type="module" defer src="/example/example-es6.js"></script>
+    <!-- Global -->
+    <script defer src="/dist/index.global.min.js"></script>
+    <script defer src="/example/example-global.js"></script>
 
-    <!-- ES5 -->
-    <!-- <script src="/dist/index.js"></script> -->
-    <!-- <script defer src="/example/example-es5.js"></script> -->
+    <!-- Module -->
+    <!-- <script src="/example/example-module.js" defer type="module"></script> -->
   </head>
   <body>
     <header></header>
     <section id="section-1">
       <div class="svg-container">
         <svg viewBox="0 0 9 699" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            id="scroll-line-1"
-            d="M 4 4 V 694.5"
-            stroke="url(#paint0_linear_102_3)"
-            stroke-width="8"
-            stroke-linecap="round" />
+          <path id="scroll-line-1" d="M 4 4 V 694.5" stroke="url(#paint0_linear_102_3)" stroke-width="8" stroke-linecap="round" />
           <defs>
-            <linearGradient
-              id="paint0_linear_102_3"
-              x1="-33.4736"
-              y1="-33.5001"
-              x2="53.1928"
-              y2="1169.5"
-              gradientUnits="userSpaceOnUse">
+            <linearGradient id="paint0_linear_102_3" x1="-33.4736" y1="-33.5001" x2="53.1928" y2="1169.5" gradientUnits="userSpaceOnUse">
               <stop stop-color="#F87D37" />
               <stop offset="1" stop-color="#FBAA23" />
             </linearGradient>
@@ -51,13 +40,7 @@
             stroke-width="8"
             stroke-linecap="round" />
           <defs>
-            <linearGradient
-              id="paint0_linear_2_3"
-              x1="199.027"
-              y1="-6.29894e-06"
-              x2="285.693"
-              y2="1203"
-              gradientUnits="userSpaceOnUse">
+            <linearGradient id="paint0_linear_2_3" x1="199.027" y1="-6.29894e-06" x2="285.693" y2="1203" gradientUnits="userSpaceOnUse">
               <stop stop-color="#F87D37" />
               <stop offset="1" stop-color="#FBAA23" />
             </linearGradient>
@@ -68,19 +51,9 @@
     <section id="section-3">
       <div class="svg-container">
         <svg viewBox="0 0 343 637" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            id="scroll-line-3"
-            d="M178.458 0.5V142H339V292.5H4.5V462H178.458V636.5"
-            stroke="url(#paint0_linear_2_3)"
-            stroke-width="8" />
+          <path id="scroll-line-3" d="M178.458 0.5V142H339V292.5H4.5V462H178.458V636.5" stroke="url(#paint0_linear_2_3)" stroke-width="8" />
           <defs>
-            <linearGradient
-              id="paint0_linear_2_3"
-              x1="140.026"
-              y1="-37.0001"
-              x2="226.693"
-              y2="1166"
-              gradientUnits="userSpaceOnUse">
+            <linearGradient id="paint0_linear_2_3" x1="140.026" y1="-37.0001" x2="226.693" y2="1166" gradientUnits="userSpaceOnUse">
               <stop stop-color="#F87D37" />
               <stop offset="1" stop-color="#FBAA23" />
             </linearGradient>
@@ -98,13 +71,7 @@
             stroke-width="8"
             stroke-linecap="round" />
           <defs>
-            <radialGradient
-              id="paint0_radial_104_5"
-              cx="0"
-              cy="0"
-              r="1"
-              gradientUnits="userSpaceOnUse"
-              gradientTransform="translate(465 147.5) rotate(124.873) scale(806.29 606.555)">
+            <radialGradient id="paint0_radial_104_5" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(465 147.5) rotate(124.873) scale(806.29 606.555)">
               <stop stop-color="#F87D37" />
               <stop offset="1" stop-color="#FBAA23" />
             </radialGradient>
